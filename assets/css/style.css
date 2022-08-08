@@ -291,7 +291,7 @@ main .returnTop.active:hover{
 }
 
 nav .container .left .logo{
-    background-image: url(/assets/img/escurial.png);
+    background-image: url(assets/img/escurial.png);
     width: 9rem;
 }
 
@@ -301,7 +301,7 @@ nav .container .left .logo{
     }
 
     nav .container .left .logo{
-        background-image: url(/assets/img/escurial-120.png);
+        background-image: url(assets/img/escurial-120.png);
         width: 3rem;
     }
 }
