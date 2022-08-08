@@ -41,6 +41,7 @@ if(localStorage.getItem("theme") === 'dark'){
 }
 
 let SearchProducts = () => {
+    inputSearch.blur()
     if(inputSearch.value.length > 0){
         searchBar.classList.remove('error')
         
