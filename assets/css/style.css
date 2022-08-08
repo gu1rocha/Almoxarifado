@@ -228,8 +228,8 @@ main .cards .card{
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     background-color: var(--color-white);
-    height: 30rem;
-    width: 22.5rem;
+    height: 28rem;
+    width: 21rem;
     display: inline-flex;
     flex-direction: column;
     justify-content: space-between;
