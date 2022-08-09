@@ -4,8 +4,8 @@ inventario.inventario.forEach(item => {
     card.classList.add('card')
     const cardContent = `
                         <img src="${item.src !== undefined ? item.src : "./assets/img/noImg.png"}">
-                        <h1>${item.descricao}</h1>
-                        <h2>${item.quantidade} UND</h2>
+                        <h3>${item.descricao}</h3>
+                        <h4>${item.quantidade} UND</h4>
                         `
     card.innerHTML = cardContent;
     document.querySelector('.cards').appendChild(card);
