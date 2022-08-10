@@ -1,5 +1,5 @@
 inventario.inventario.forEach(item => {
-    console.log(item.img !== undefined ? item.src : "./assets/img/noImg.png")
+    //console.log(item.img !== undefined ? item.src : "./assets/img/noImg.png")
     const card = document.createElement('div');
     card.classList.add('card')
     const cardContent = `

@@ -300,7 +300,7 @@ main .returnTop.active:hover{
 }
 
 nav .container .left .logo{
-    background-image: url(/assets/img/escurial.png);
+    background-image: url(/Almoxarifado/assets/img/escurial.png);
     width: 9rem;
 }
 
@@ -328,7 +328,7 @@ main .noFound span{
     }
 
     nav .container .left .logo{
-        background-image: url(/assets/img/escurial-120.png);
+        background-image: url(/Almoxarifado/assets/img/escurial-120.png);
         width: 3rem;
     }
 }
