@@ -215,6 +215,7 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 main{
     display: block;
     width: 100%;
+    height: 100%;
     padding: 6rem 0 0 0;
     position: relative;
 }
@@ -307,7 +308,7 @@ nav .container .left .logo{
 main .noFound{
     display: flex;
     width: 100%;
-    height: calc(100vh - 16rem);
+    height: calc(100% - 16rem);
     align-items: center;
     justify-content: center;
 }
