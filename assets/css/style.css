@@ -55,7 +55,7 @@ html{
 }
 
 body{
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     font-family: poppins, sans-serif;
     font-size: 0.88rem;
@@ -63,6 +63,7 @@ body{
     user-select: none;
     overflow-x: hidden;
     color: var(--color-dark);
+    position: relative;
 }
 
 a{
@@ -108,6 +109,9 @@ small{
 }
 
 nav {
+    position: fixed;
+    top: 0;
+    z-index: 1;
     width: 100%;
     background-color: var(--color-white);
     padding: 1rem 0;
@@ -210,29 +214,29 @@ input[type="search"]:focus::-webkit-search-cancel-button {
 
 main{
     display: block;
-    width: 96%;
-    margin: 2rem auto auto;
+    width: 100%;
+    padding: 6rem 0 0 0;
     position: relative;
 }
 
 main .cards{
-    display: flex;
-    width: 96%;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    width: 100%;
+    padding: 0 0.5rem 5rem;
+    max-width: 1200px;
+    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin: 0 auto;
 }
 
 main .cards .card{
-    padding: var(--padding-1);
-    border-radius: var(--card-border-radius);
+    overflow: hidden;
+    border-radius: var(--border-radius-2);
     background-color: var(--color-white);
     height: 20rem;
-    width: 15rem;
+    width: 100%;
     display: inline-flex;
     flex-direction: column;
-    justify-content: space-between;
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
     cursor: pointer;
@@ -245,16 +249,21 @@ main .cards .card:hover{
 main .cards .card img{
     object-fit: contain;
     height: 70%;
+    background-color: #d9c9c5;
 }
 
 main .cards .card h3{
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-break: normal;
     word-wrap: break-word;
-    height: 5rem;
+    height: 4rem;
+    font-size: .8rem;
+    padding: .5rem .5rem 0;
+    margin-top: .5rem;
+    border-top: 1px solid gainsboro;
 }
 
 main .cards .card h4{
@@ -291,8 +300,26 @@ main .returnTop.active:hover{
 }
 
 nav .container .left .logo{
-    background-image: url(assets/img/escurial.png);
+    background-image: url(/assets/img/escurial.png);
     width: 9rem;
+}
+
+main .noFound{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 16rem);
+    align-items: center;
+    justify-content: center;
+}
+
+main .noFound p{
+    text-align: center;
+    font-size: 2rem;
+    width: 25rem;
+}
+
+main .noFound span{
+    font-size: 20rem;
 }
 
 @media screen and (max-width: 768px){
@@ -301,7 +328,15 @@ nav .container .left .logo{
     }
 
     nav .container .left .logo{
-        background-image: url(assets/img/escurial-120.png);
+        background-image: url(/assets/img/escurial-120.png);
         width: 3rem;
+    }
+}
+
+
+@media screen and (max-width: 569px){
+    main .cards{
+        gap: 0.75rem;
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
     }
 }

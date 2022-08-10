@@ -6,6 +6,7 @@ const search = searchBar.querySelector(".search");
 const inputSearch = searchBar.querySelector("input");
 
 const cards = document.querySelector('.cards');
+const noFound = document.querySelector('.noFound')
 
 returnTop.addEventListener('click', () => {
     window.scrollTo(0, 0);
@@ -41,19 +42,27 @@ if(localStorage.getItem("theme") === 'dark'){
 }
 
 let SearchProducts = () => {
-    inputSearch.blur()
+    //inputSearch.blur()
     if(inputSearch.value.length > 0){
         searchBar.classList.remove('error')
-        
+        let cont = 0;
         for(let card of cards.querySelectorAll(".card")){
             if(card.querySelector('h3').textContent.toLowerCase().includes(inputSearch.value.toLowerCase())){
+                cont++
                 card.classList.remove('hidden')
             }else{
                 card.classList.add('hidden')
             }
         }
+        console.log(cont)
+        if(cont > 0){
+            noFound.classList.add('hidden')
+        }else{
+            noFound.classList.remove('hidden')
+        }
     }else{
         for(let card of cards.querySelectorAll(".card")){card.classList.remove('hidden')}
+        noFound.classList.remove('hidden')
     }
 }
 
