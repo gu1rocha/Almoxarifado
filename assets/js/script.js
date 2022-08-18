@@ -6,7 +6,9 @@ const search = searchBar.querySelector(".search");
 const inputSearch = searchBar.querySelector("input");
 
 const cards = document.querySelector('.cards');
-const noFound = document.querySelector('.noFound')
+const noFound = document.querySelector('.noFound');
+
+const download = document.querySelector('.download-button');
 
 returnTop.addEventListener('click', () => {
     window.scrollTo(0, 0);
@@ -42,7 +44,6 @@ if(localStorage.getItem("theme") === 'dark'){
 }
 
 let SearchProducts = () => {
-    //inputSearch.blur()
     if(inputSearch.value.length > 0){
         searchBar.classList.remove('error')
         let cont = 0;
@@ -69,3 +70,5 @@ let SearchProducts = () => {
 search.addEventListener('click',SearchProducts)
 
 inputSearch.addEventListener("keypress", (event) => {if(event.key === "Enter") SearchProducts()});
+
+download.addEventListener('click', ()=>{genPDF()})

@@ -56,7 +56,7 @@ html{
 
 body{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     font-family: poppins, sans-serif;
     font-size: 0.88rem;
     background: var(--color-background);
@@ -193,6 +193,43 @@ nav .container .search-bar input{
     color: var(--color-dark);
 }
 
+.inventory{
+    padding: 0.75rem;
+    position: fixed;
+    top: 4.7rem;
+    right: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    background-color: brown;
+    align-items: center;
+    font-weight: bolder;
+    cursor: pointer;
+    text-shadow: 0 0 0.5rem var(--color-white);
+}
+
+.inventory .left{
+    margin-left: .5rem;
+}
+
+.inventory .left h5{
+    position: absolute;
+    top: 1.5rem;
+    background-color: var(--color-danger);
+    padding: 0.25rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    text-align: center;
+    right: 0.25rem;
+    box-shadow: 0rem 0rem 0.5rem var(--color-white);
+    display: none;
+}
+
+.inventory .left h5.active{
+    display: block;
+}
+
 input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     height: 1em;
@@ -216,7 +253,7 @@ main{
     display: block;
     width: 100%;
     height: 100%;
-    padding: 6rem 0 0 0;
+    padding: 8.5rem 0 0 0;
     position: relative;
 }
 
@@ -228,6 +265,7 @@ main .cards{
     gap: 0.9rem;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     margin: 0 auto;
+    position: relative;
 }
 
 main .cards .card{
@@ -240,11 +278,43 @@ main .cards .card{
     flex-direction: column;
     box-shadow: var(--box-shadow);
     transition: all 300ms ease;
-    cursor: pointer;
+    position: relative;
+    justify-content: space-between;
 }
 
 main .cards .card:hover{
     box-shadow: none;
+}
+
+.card.anime{
+    position: fixed;
+    width: 10rem;
+    height: 10rem;
+    top: 11rem;
+    right: 6rem;
+    animation: diminuir 500ms ease forwards;
+    z-index: 4;
+}
+
+@keyframes diminuir{
+    to{
+        z-index: 2;
+        transform: translate3d(100%,-100%,0) scale3d(10%, 10%, 0);
+    }
+}
+
+main .cards .card .cart{
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    background-color: var(--color-background);
+    padding: .2rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+main .cards .card .cart:hover{
+    color: #8a000f;
 }
 
 main .cards .card img{
@@ -255,13 +325,13 @@ main .cards .card img{
 
 main .cards .card h3{
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-break: normal;
     word-wrap: break-word;
     line-height: 1rem;
-    height: 3.6rem;
+    height: 2.5rem;
     font-size: .8rem;
     padding: .5rem .5rem 0;
     margin: .5rem 0;
@@ -270,6 +340,13 @@ main .cards .card h3{
 
 main .cards .card h4{
     text-align: center;
+}
+
+main .cards .card div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem 0.5rem;
 }
 
 main .returnTop{
@@ -324,6 +401,182 @@ main .noFound span{
     font-size: 20rem;
 }
 
+main > .right{
+    position: relative;
+}
+
+main .boxOrcamento{
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--color-white);
+}
+
+main .boxOrcamento .head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .boxOrcamento .head h1{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+main .boxOrcamento .head span{
+    font-weight: bold;
+}
+
+main .boxOrcamento .orcamento{
+    display: flex;
+    gap: .5rem;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+    background-color: var(--color-white);
+    height: 5rem;
+    padding: 0.5rem;
+    margin: .5rem 0;
+    border: solid 1px var(--color-dark);
+}
+
+
+main .boxOrcamento .orcamento:hover{
+    box-shadow: none;
+}
+
+main .boxOrcamento .orcamento img{
+    height: 100%;
+    width: 5rem;
+    object-fit: contain;
+}
+
+main .boxOrcamento .orcamento .right{
+    width: calc(100% - 5.5rem);
+}
+
+main .boxOrcamento .orcamento .right h3{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.2rem;
+}
+
+main .boxOrcamento .orcamento .right .bottom{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: .5rem;
+}
+
+main .boxOrcamento .orcamento .right .bottom .end{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+main .boxOrcamento .orcamento .input-group{
+    align-items: center;
+    display: flex;
+    border: 1px solid gainsboro;
+    padding: 0.2rem;
+    border-radius: var(--border-radius-1);
+}
+  
+main .boxOrcamento .orcamento .input-group .input-group-field {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    width: 3rem;
+}
+  
+main .boxOrcamento .orcamento .input-group .input-group-field::-webkit-inner-spin-button,
+main .boxOrcamento .orcamento .input-group .input-group-field ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+  
+main .boxOrcamento .orcamento .input-group .circle {
+    border-radius: 50%;
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+  
+main .boxOrcamento .orcamento .input-group .circle.disabled{
+    pointer-events: none;
+    filter: opacity(.2);
+}
+
+main .boxOrcamento .orcamento .delete{
+    color: var(--color-danger);
+    cursor: pointer;
+}
+  
+main .boxOrcamento.show{
+    display: block;
+}
+
+main .boxOrcamento .close{
+    cursor: pointer;
+    font-weight: bold;
+}
+  
+main .boxOrcamento .download-button{
+    position: relative;
+    border-width: 0;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 0;
+    z-index: 1;
+    margin-top: 0.5em;
+}
+   
+main .boxOrcamento .download-button:hover {
+ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+  
+main .boxOrcamento .download-button .docs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 40px;
+    padding: 0 10px;
+    border-radius: 4px;
+    z-index: 1;
+    background-color: #242a35;
+    border: solid 1px #e8e8e82d;
+    transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+  
+main .boxOrcamento .download-button .download{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin: 0 auto;
+    z-index: -1;
+    border-radius: 4px;
+    transform: translateY(0%);
+    background-color: #01e056;
+    border: solid 1px #01e0572d;
+    transition: all .5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+   
+main .boxOrcamento .download-button:hover .download {
+ transform: translateY(100%)
+}
+
 @media screen and (max-width: 768px){
     nav .container{
         grid-template-columns: 3rem auto 4rem;
@@ -340,5 +593,87 @@ main .noFound span{
     main .cards{
         gap: 0.75rem;
         grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    }
+}
+
+@media screen and (min-width: 1350px){
+    main{
+        display: grid;
+        max-width: calc(1200px + 25rem);
+        grid-template-columns: calc(100% - 24rem) 24rem;
+        margin: 0 auto;
+        padding: 6rem 0 0 0;
+    }
+    .inventory{
+        display: none;
+    }
+    
+    .boxOrcamento {
+        display: block;
+        position: relative;
+        position: sticky;
+        width: 100%;
+        height: 100%;
+        top: 5rem;
+        overflow: hidden auto;
+        max-height: calc(100vh - 5rem);
+    }
+
+    .card.anime{
+        right: calc(55vw - 600px);
+    }
+
+    main .boxOrcamento .close{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 1350px){
+    .boxOrcamento {
+        position: fixed;
+        right: -100%;
+        background-color: var(--color-white);
+        width: 25rem;
+        z-index: 3;
+        top: 0;
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        height: 100%;
+        max-height: 100vh;
+        overflow: hidden auto;
+        padding-right: var(--card-padding);
+        display: none;
+        animation: showMenu 400ms ease forwards;
+    }
+
+    @keyframes showMenu {
+        to{
+            right: 0;
+        }
+    }
+}
+
+@media screen and (max-width: 768px){
+    body.noScrool{
+        overflow: hidden;
+    }
+    .boxOrcamento {
+        position: fixed;
+        right: -100%;
+        background-color: var(--color-white);
+        width: 100%;
+        z-index: 3;
+        top: 0;
+        box-shadow: 1rem 3rem 4rem var(--color-light);
+        height: 100vh;
+        padding-right: var(--card-padding);
+        display: none;
+        animation: showMenu 400ms ease forwards;
+    }
+
+    @keyframes showMenu {
+        to{
+            right: 0;
+        }
     }
 }

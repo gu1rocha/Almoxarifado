@@ -16,6 +16,11 @@
     <script src="./assets/js/invetario.js"></script>
     <script src="./assets/js/insertProducts.js" defer></script>
     <script src="./assets/js/script.js" defer></script>
+
+    <script src="/assets/js/jspdf/jspdf.min.js"></script>
+    <script src="/assets/js/jspdf/1.5.3.min.js"></script>
+    <script src="/assets/js/generatePDF.js"></script>
+
 </head>
 <body>
     <nav>
@@ -39,6 +44,7 @@
     </nav>
     <main>
         <div class="cards"></div>
+        
         <span class="material-symbols-sharp returnTop">arrow_circle_up</span>
 
         <div class="noFound hidden">
@@ -46,6 +52,36 @@
                 Item não encontrado
                 <span class="material-symbols-sharp">sentiment_dissatisfied</span>
             </p>
+        </div>
+        <div class="right">
+            <div class="inventory">
+                Orçamento
+                <div class="left">
+                    <span class="material-symbols-sharp">inventory</span>
+                    <h5></h5>
+                </div>
+            </div>
+            <div class="boxOrcamento">
+                <div class="head">
+                    <h1>
+                        ORÇAMENTO
+                        <span class="material-symbols-sharp">inventory</span>
+                    </h1>
+                    <span class="material-symbols-sharp close">close</span>
+                </div>
+                <div class="orcamentos"></div>
+                <div class="end">
+                    <!--div class="total">Total</div>
+                    <div class="downPDF">
+                        <button class="download-button">
+                            <div class="docs">DOWNLOAD PDF</div>
+                            <div class="download">
+                                <span class="material-symbols-sharp">file_download</span>
+                            </div>
+                        </button>
+                    </div-->
+                </div>
+            </div>
         </div>
     </main>
     

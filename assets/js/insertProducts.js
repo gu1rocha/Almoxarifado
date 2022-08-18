@@ -1,12 +1,138 @@
+const boxCards = document.querySelector('.cards')
+const inventory = document.querySelector('.inventory')
+const boxOrcamento = document.querySelector('.boxOrcamento')
+const orcamentos = document.querySelector('.orcamentos')
+
 inventario.inventario.forEach(item => {
-    //console.log(item.img !== undefined ? item.src : "./assets/img/noImg.png")
     const card = document.createElement('div');
     card.classList.add('card')
+    card.dataset.item = JSON.stringify(item)
     const cardContent = `
+                        <span class="material-symbols-sharp cart">inventory</span>
                         <img src="${item.src !== undefined ? item.src : "./assets/img/noImg.png"}">
                         <h3>${item.descricao}</h3>
-                        <h4>${item.quantidade} UND</h4>
+                        <div>
+                            <span>${item.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                            <span>${item.quantidade} UND</span>
+                        </div>
                         `
     card.innerHTML = cardContent;
-    document.querySelector('.cards').appendChild(card);
+    boxCards.appendChild(card);
+})
+
+
+let orcamento = [];
+
+let addItemOrcamento = item => {
+    orcamento.push(JSON.parse(item.dataset.item))
+    setTimeout(()=> {
+
+        let alterarValor = ()=>{
+            orcamentoCard.querySelector('.valor').textContent = (orcamentoCard.querySelector('input').value * JSON.parse(orcamentoCard.dataset.item).valor).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+            if(Number(orcamentoCard.querySelector('input').max) === Number(orcamentoCard.querySelector('input').value)){
+                orcamentoCard.querySelector('.plus').classList.add('disabled')
+            }else{
+                orcamentoCard.querySelector('.plus').classList.remove('disabled')
+            }
+            if(Number(orcamentoCard.querySelector('input').min) === Number(orcamentoCard.querySelector('input').value)){
+                orcamentoCard.querySelector('.minus').classList.add('disabled')
+            }else{
+                orcamentoCard.querySelector('.minus').classList.remove('disabled')
+            }
+        }
+
+        inventory.querySelector('h5').textContent = orcamento.length;
+        const orcamentoCard = document.createElement('div');
+        orcamentoCard.classList.add('orcamento');
+        let novoOrc = orcamento[orcamento.length - 1]
+        orcamentoCard.dataset.item = JSON.stringify(novoOrc)
+        const orcamentoContent = `
+                                 <img src="${novoOrc.src !== undefined ? novoOrc.src : "./assets/img/noImg.png"}">
+                                 <div class="right">
+                                    <h3>${novoOrc.descricao}</h3>
+                                    <div class="bottom">
+                                        <div>
+                                            <div class="input-group">
+                                                <button type="button" class="circle minus"><span class="material-symbols-sharp">remove</span></button>
+                                                <input class="input-group-field" type="number" name="quantity" value="1" min="1" max="${novoOrc.quantidade}" oninput="validity.valid ? this.save = value : value = this.save;">
+                                                <button type="button" class="circle plus"><span class="material-symbols-sharp">add</span></button>
+                                            </div>
+                                        </div>
+                                        <div class="end">
+                                            <span class="valor"></span>
+                                            <span class="material-symbols-sharp delete">delete</span>
+                                        </div>
+                                    </div>
+                                 </div>
+                                 `
+                                 
+        orcamentoCard.innerHTML = orcamentoContent;
+        orcamentos.appendChild(orcamentoCard);
+
+        alterarValor()
+
+        if(orcamento.length > 0){
+            inventory.querySelector('h5').classList.add('active')
+        }
+
+        orcamentoCard.querySelector('.minus').addEventListener('click',(el)=>{
+            if(el.path[2].querySelector('input').min < el.path[2].querySelector('input').value){
+                el.path[2].querySelector('input').value = --el.path[2].querySelector('input').value
+                alterarValor()
+            }
+        })
+
+        orcamentoCard.querySelector('.plus').addEventListener('click',(el)=>{
+            if(Number(el.path[2].querySelector('input').max) > Number(el.path[2].querySelector('input').value)){
+                el.path[2].querySelector('input').value = ++el.path[2].querySelector('input').value
+                alterarValor()
+            }
+        })
+
+        orcamentoCard.querySelector('input').addEventListener('change',(el)=>{
+            if(el.path[0].value > 0){
+                alterarValor()
+            }
+        })
+
+        orcamentoCard.querySelector('.delete').addEventListener('click',el=>{
+            let newOrcamento = orcamento.filter( item => item.id !== JSON.parse(el.path[4].dataset.item).id );
+            orcamento = newOrcamento;
+            el.path[4].remove();
+
+            const cards = boxCards.querySelectorAll('.card')
+            
+            for (const card of cards) {
+                if(JSON.parse(card.dataset.item).id === JSON.parse(el.path[4].dataset.item).id){
+                    card.querySelector('.cart').classList.remove('hidden')
+                }
+            }
+        })
+    
+
+    }, 600);
+}
+
+
+
+const carts = document.querySelectorAll('.cart');
+
+for (const cart of carts) {
+    cart.addEventListener('click',()=>{
+        let clone = cart.offsetParent.cloneNode(true)
+        document.querySelector('main').appendChild(clone);
+        clone.classList.add('anime')
+        cart.classList.add('hidden')
+        addItemOrcamento(clone)
+        setTimeout(()=> {clone.remove()}, 500);
+    })
+}
+
+inventory.addEventListener('click',()=>{
+    boxOrcamento.classList.add('show')
+    document.querySelector('body').classList.add('noScrool')
+    boxOrcamento.querySelector('.close').addEventListener('click',()=>{
+        boxOrcamento.classList.remove('show')
+        document.querySelector('body').classList.remove('noScrool')
+    })
 })
