@@ -9,7 +9,7 @@ inventario.inventario.forEach(item => {
     card.dataset.item = JSON.stringify(item)
     const cardContent = `
                         <span class="material-symbols-sharp cart">inventory</span>
-                        <img src="${item.src !== undefined ? item.src : "./assets/img/noImg.png"}">
+                        <img src="${item.src !== '' ? item.src : "./assets/img/noImg.png"}">
                         <h3>${item.descricao}</h3>
                         <div>
                             <span>${item.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
@@ -25,6 +25,7 @@ let orcamento = [];
 
 let addItemOrcamento = item => {
     orcamento.push(JSON.parse(item.dataset.item))
+    orcamento[orcamento.length - 1].qtdCompra = 1
     setTimeout(()=> {
 
         let alterarValor = ()=>{
@@ -47,7 +48,7 @@ let addItemOrcamento = item => {
         let novoOrc = orcamento[orcamento.length - 1]
         orcamentoCard.dataset.item = JSON.stringify(novoOrc)
         const orcamentoContent = `
-                                 <img src="${novoOrc.src !== undefined ? novoOrc.src : "./assets/img/noImg.png"}">
+                                 <img src="${novoOrc.src !== '' ? novoOrc.src : "./assets/img/noImg.png"}">
                                  <div class="right">
                                     <h3>${novoOrc.descricao}</h3>
                                     <div class="bottom">
@@ -99,7 +100,7 @@ let addItemOrcamento = item => {
             let newOrcamento = orcamento.filter( item => item.id !== JSON.parse(el.path[4].dataset.item).id );
             orcamento = newOrcamento;
             el.path[4].remove();
-
+            inventory.querySelector('h5').textContent = orcamento.length;
             const cards = boxCards.querySelectorAll('.card')
             
             for (const card of cards) {
@@ -108,7 +109,7 @@ let addItemOrcamento = item => {
                 }
             }
         })
-    
+    console.log(orcamento)
 
     }, 600);
 }
