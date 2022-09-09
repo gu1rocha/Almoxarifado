@@ -3,25 +3,39 @@ const inventory = document.querySelector('.inventory')
 const boxOrcamento = document.querySelector('.boxOrcamento')
 const orcamentos = document.querySelector('.orcamentos')
 
+const total = document.querySelector('.total')
+
 inventario.inventario.forEach(item => {
     const card = document.createElement('div');
     card.classList.add('card')
     card.dataset.item = JSON.stringify(item)
     const cardContent = `
-                        <span class="material-symbols-sharp cart">inventory</span>
+                        
                         <img src="${item.src !== '' ? item.src : "./assets/img/noImg.png"}">
                         <h3>${item.descricao}</h3>
-                        <div>
-                            <span>${item.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
-                            <span>${item.quantidade} UND</span>
+                        <div class="bottom">
+                            <div>
+                                <span>${item.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>
+                                <span>${item.quantidade} UND</span>
+                            </div>
+                            <button>Add <span class="material-symbols-sharp">inventory</span> </button>
                         </div>
                         `
     card.innerHTML = cardContent;
     boxCards.appendChild(card);
 })
 
-
 let orcamento = [];
+let orcQtd = ''
+let valorTotal = 0
+
+let altualizarTotal = () => {
+    valorTotal = 0
+    for (const orc of document.querySelectorAll('.orcamento')) {
+        valorTotal += JSON.parse(orc.dataset.item).qtdCompra * JSON.parse(orc.dataset.item).valor
+    }
+    total.textContent = `Total: ${valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`
+}
 
 let addItemOrcamento = item => {
     orcamento.push(JSON.parse(item.dataset.item))
@@ -29,6 +43,9 @@ let addItemOrcamento = item => {
     setTimeout(()=> {
 
         let alterarValor = ()=>{
+            orcQtd = JSON.parse(orcamentoCard.dataset.item)
+            orcQtd.qtdCompra = orcamentoCard.querySelector('input').value
+            orcamentoCard.dataset.item = JSON.stringify(orcQtd)
             orcamentoCard.querySelector('.valor').textContent = (orcamentoCard.querySelector('input').value * JSON.parse(orcamentoCard.dataset.item).valor).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
             if(Number(orcamentoCard.querySelector('input').max) === Number(orcamentoCard.querySelector('input').value)){
                 orcamentoCard.querySelector('.plus').classList.add('disabled')
@@ -40,6 +57,7 @@ let addItemOrcamento = item => {
             }else{
                 orcamentoCard.querySelector('.minus').classList.remove('disabled')
             }
+            altualizarTotal()
         }
 
         inventory.querySelector('h5').textContent = orcamento.length;
@@ -100,30 +118,30 @@ let addItemOrcamento = item => {
             let newOrcamento = orcamento.filter( item => item.id !== JSON.parse(el.path[4].dataset.item).id );
             orcamento = newOrcamento;
             el.path[4].remove();
+            altualizarTotal()
             inventory.querySelector('h5').textContent = orcamento.length;
             const cards = boxCards.querySelectorAll('.card')
             
             for (const card of cards) {
                 if(JSON.parse(card.dataset.item).id === JSON.parse(el.path[4].dataset.item).id){
-                    card.querySelector('.cart').classList.remove('hidden')
+                    card.querySelector('button').classList.remove('disabled')
                 }
             }
         })
-    console.log(orcamento)
 
     }, 600);
 }
 
 
 
-const carts = document.querySelectorAll('.cart');
+const carts = boxCards.querySelectorAll('button');
 
 for (const cart of carts) {
     cart.addEventListener('click',()=>{
         let clone = cart.offsetParent.cloneNode(true)
         document.querySelector('main').appendChild(clone);
         clone.classList.add('anime')
-        cart.classList.add('hidden')
+        cart.classList.add('disabled')
         addItemOrcamento(clone)
         setTimeout(()=> {clone.remove()}, 500);
     })

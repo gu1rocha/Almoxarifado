@@ -10,6 +10,10 @@ const noFound = document.querySelector('.noFound');
 
 const download = document.querySelector('.download-button');
 
+const sideMenu = document.querySelector("aside");
+const menuBtn = document.querySelector("#menu-btn");
+const closeBtn = document.querySelector("#close-btn");
+
 returnTop.addEventListener('click', () => {
     window.scrollTo(0, 0);
 });
@@ -43,8 +47,15 @@ if(localStorage.getItem("theme") === 'dark'){
     themeToggler.querySelector('span:nth-child(2)').classList.add('active');
 }
 
+function alterar_url(nova){
+    history.pushState({}, null, nova);
+}
+
+const urlParams = new URLSearchParams(location.search)
+
 let SearchProducts = () => {
     if(inputSearch.value.length > 0){
+        alterar_url(location.origin+location.pathname+`?p=${inputSearch.value.toLowerCase()}`)
         searchBar.classList.remove('error')
         let cont = 0;
         for(let card of cards.querySelectorAll(".card")){
@@ -55,20 +66,34 @@ let SearchProducts = () => {
                 card.classList.add('hidden')
             }
         }
-        console.log(cont)
         if(cont > 0){
             noFound.classList.add('hidden')
         }else{
             noFound.classList.remove('hidden')
         }
     }else{
+        alterar_url(location.origin+location.pathname)
         for(let card of cards.querySelectorAll(".card")){card.classList.remove('hidden')}
-        noFound.classList.remove('hidden')
+        noFound.classList.add('hidden')
     }
+}
+
+if(urlParams.get('p') !== ''){
+    inputSearch.value = urlParams.get('p')
+    SearchProducts()
 }
 
 search.addEventListener('click',SearchProducts)
 
 inputSearch.addEventListener("keypress", (event) => {if(event.key === "Enter") SearchProducts()});
+
+menuBtn.addEventListener('click', () =>{
+    console.log('click')
+    sideMenu.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    sideMenu.removeAttribute('style')
+});
 
 download.addEventListener('click', ()=>{genPDF()})
