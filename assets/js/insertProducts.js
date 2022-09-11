@@ -87,7 +87,6 @@ let addItemOrcamento = item => {
                                  
         orcamentoCard.innerHTML = orcamentoContent;
         orcamentos.appendChild(orcamentoCard);
-        console.log(orcamentoCard.querySelector('img'))
         alterarValor()
 
         if(orcamento.length > 0){
