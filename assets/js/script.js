@@ -88,7 +88,6 @@ search.addEventListener('click',SearchProducts)
 inputSearch.addEventListener("keypress", (event) => {if(event.key === "Enter") SearchProducts()});
 
 menuBtn.addEventListener('click', () =>{
-    console.log('click')
     sideMenu.style.display = 'block';
 });
 
@@ -96,4 +95,8 @@ closeBtn.addEventListener('click', () => {
     sideMenu.removeAttribute('style')
 });
 
-download.addEventListener('click', ()=>{genPDF()})
+download.addEventListener('click', ()=>{
+    createLoading(document.querySelector('body')).creat()
+    genPDF(); 
+    createLoading(document.querySelector('body')).remove()
+})

@@ -87,7 +87,7 @@ let addItemOrcamento = item => {
                                  
         orcamentoCard.innerHTML = orcamentoContent;
         orcamentos.appendChild(orcamentoCard);
-
+        console.log(orcamentoCard.querySelector('img'))
         alterarValor()
 
         if(orcamento.length > 0){
@@ -95,15 +95,15 @@ let addItemOrcamento = item => {
         }
 
         orcamentoCard.querySelector('.minus').addEventListener('click',(el)=>{
-            if(el.path[2].querySelector('input').min < el.path[2].querySelector('input').value){
-                el.path[2].querySelector('input').value = --el.path[2].querySelector('input').value
+            if(orcamentoCard.querySelector('input').min < orcamentoCard.querySelector('input').value){
+                orcamentoCard.querySelector('input').value = --orcamentoCard.querySelector('input').value
                 alterarValor()
             }
         })
 
         orcamentoCard.querySelector('.plus').addEventListener('click',(el)=>{
-            if(Number(el.path[2].querySelector('input').max) > Number(el.path[2].querySelector('input').value)){
-                el.path[2].querySelector('input').value = ++el.path[2].querySelector('input').value
+            if(Number(orcamentoCard.querySelector('input').max) > Number(orcamentoCard.querySelector('input').value)){
+                orcamentoCard.querySelector('input').value = ++orcamentoCard.querySelector('input').value
                 alterarValor()
             }
         })
@@ -129,7 +129,7 @@ let addItemOrcamento = item => {
             }
         })
 
-    }, 600);
+    }, 200);
 }
 
 
