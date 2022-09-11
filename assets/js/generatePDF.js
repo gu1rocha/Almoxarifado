@@ -139,7 +139,7 @@ let genPDF = () => {
 
 
     doc.setFillColor(220,220,220);
-    doc.rect(7, y-3, 195, 7, 'F');
+    doc.rect(7, y-2.8, 195, 6.8, 'F');
     doc.setTextColor(0, 0, 0);
     
     doc.line(7, y-3, 7, y+4)
