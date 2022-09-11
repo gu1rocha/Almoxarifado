@@ -4,6 +4,7 @@ let genPDF = () => {
 
     let changeDateFormat = data => `${data.getDate() < 10 ? `0${data.getDate()}` : data.getDate()}/${(data.getMonth() + 1) < 10 ? `0${data.getMonth() + 1}`: data.getMonth() + 1}/${data.getFullYear()}`
     let changeTimeFormat = data => `${data.getHours()}:${data.getMinutes()}`
+    let InsertTextoComQuebra = (texto, max, x, y) => doc.text(doc.splitTextToSize(texto, max), x, y)
 
     let data = new Date()
     let validade = new Date(new Date().setDate(data.getDate() + 1))
@@ -57,9 +58,11 @@ let genPDF = () => {
     doc.setFontStyle('normal');
     doc.text(`${validade} às ${time}`, doc.internal.pageSize.width - 11 / 1.05, 47 ,{align: 'right'})
 
-    let InsertTextoComQuebra = (texto, max, x, y) => doc.text(doc.splitTextToSize(texto, max), x, y)
-    
     let y = 70
+
+    doc.setFillColor(220,220,220);
+    doc.rect(7, y-4.8, 195, 6.75, 'F');
+    doc.setTextColor(0, 0, 0);
 
     doc.line(7, y-5, 202, y-5)
 
@@ -69,14 +72,14 @@ let genPDF = () => {
     doc.line(26.5, y-5, 26.5, y+2)
     doc.text("DESCRIÇÃO", 70, y)
 
-    doc.line(137, y-5, 137, y+2)
-    doc.text("QTD", doc.internal.pageSize.width - 65 / 1.05, y, {align: 'right'})
+    doc.line(132, y-5, 132, y+2)
+    doc.text("QTD", doc.internal.pageSize.width - 70 / 1.05, y, {align: 'right'})
 
-    doc.line(152, y-5, 152, y+2)
-    doc.text("VALOR UNIT.", doc.internal.pageSize.width - 34 / 1.05, y, {align: 'right'})
+    doc.line(147, y-5, 147, y+2)
+    doc.text("VALOR UNIT.", doc.internal.pageSize.width - 39 / 1.05, y, {align: 'right'})
 
-    doc.line(182, y-5, 182, y+2)
-    doc.text("TOTAL", doc.internal.pageSize.width - 13 / 1.05, y, {align: 'right'})
+    doc.line(177, y-5, 177, y+2)
+    doc.text("TOTAL", doc.internal.pageSize.width - 15.5 / 1.05, y, {align: 'right'})
 
     doc.line(202, y-5, 202, y+2)
     doc.line(7, y+2, 202, y+2)
@@ -105,12 +108,12 @@ let genPDF = () => {
 
         doc.text(
             (item.qtdCompra).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}), 
-            doc.internal.pageSize.width - 65 / 1.05, y+5, {align: 'right'}
+            doc.internal.pageSize.width - 70 / 1.05, y+5, {align: 'right'}
         )
 
         doc.text(
             (item.valor).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}),
-            doc.internal.pageSize.width - 36 / 1.05, y+5, {align: 'right'}
+            doc.internal.pageSize.width - 41 / 1.05, y+5, {align: 'right'}
         )
 
         doc.text(
@@ -121,9 +124,9 @@ let genPDF = () => {
 
         doc.line(7, y-3, 7, y+17)
         doc.line(26.5, y-3, 26.5, y+17)
-        doc.line(137, y-3, 137, y+17)
-        doc.line(152, y-3, 152, y+17)
-        doc.line(182, y-3, 182, y+17)
+        doc.line(132, y-3, 132, y+17)
+        doc.line(147, y-3, 147, y+17)
+        doc.line(177, y-3, 177, y+17)
         doc.line(202, y-3, 202, y+17)
         
         doc.line(7, y+17, 202, y+17)
@@ -137,13 +140,13 @@ let genPDF = () => {
         y += 20
     }
 
-
-    doc.setFillColor(220,220,220);
-    doc.rect(7, y-2.8, 195, 6.8, 'F');
+    doc.setFillColor(180,180,180);
+    doc.rect(7, y-2.7, 195, 6.4, 'F');
     doc.setTextColor(0, 0, 0);
     
+    doc.line(7, y-3, 202, y-3)
     doc.line(7, y-3, 7, y+4)
-    doc.line(182, y-3, 182, y+4)
+    doc.line(177, y-3, 177, y+4)
 
     doc.text('TOTAL',90, y+1.5,null,null,'center')
 
