@@ -1,23 +1,132 @@
 .boxLogin{
-    display: flex;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  z-index: 4;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255,255,255,0.8);
 }
 
-.content{
-    border-radius: var(--border-radius-2);
-    background-color: var(--color-white);
-    box-shadow: var(--box-shadow);
-    transition: all 300ms ease;
-    padding: 2rem;
-    width: 50%;
-    position: relative;   
+.boxLogin .content{
+  border-radius: var(--border-radius-2);
+  background-color: var(--color-white);
+  box-shadow: 0rem 0rem 2rem black;
+  transition: all 300ms ease;
+  padding: 2rem 0 0; 
+  width: 90%;
+  max-width: 450px;
+  position: relative;   
+  overflow: hidden;
 }
 
-.content p{
-    display: flex;
-    flex-direction: column;
+.boxLogin .content h1{
+  text-align: center;
+  margin-bottom: 1rem;;
+}
+
+.boxLogin .content h1:after{
+  content: ' ';
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 10px;
+  background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%, var(--color-primary-variant) 20%, var(--color-primary) 53%,var(--color-primary-variant) 79%,rgba(147,184,189,0) 100%); 
+  background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
+}
+.boxLogin .content p{
+  position: relative;
+  padding-top: 13px;
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 2rem;
+  align-items: center;
+}
+
+.boxLogin .content p.input input{
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  outline: none;
+  width: 100%;
+  padding: 15px 20px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  -webkit-appearance:none;
+}
+
+.boxLogin .content p.input input:focus{
+  border: 2px solid var(--color-primary);
+}
+
+.boxLogin .content p.input input::placeholder{
+  color: transparent;
+}
+
+.boxLogin .content p.input label{
+  pointer-events: none;
+  position: absolute;
+  top: calc(50% - 8px);
+  left: 15px;
+  transition: all .1s linear;
+  -webkit-transition: all .1s linear;
+  -moz-transition: all .1s linear;
+  background-color: white;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.boxLogin .content p.input input:focus + label,
+.boxLogin .content p.input input:not(:placeholder-shown) + label{
+  font-size: 13px;
+  top: 0;
+  color: var(--color-primary);
+}
+
+.boxLogin .content p.checkbox input{
+  appearance: auto;
+}
+
+.boxLogin .content p.button{
+  align-items: center;
+  justify-content: center;
+}
+
+.boxLogin .content p.button input{
+  padding: .5rem 3rem;
+  background-color: var(--color-success);
+  font-weight: bold;
+  border-radius: 1rem;
+  box-shadow: 0rem 0.5rem 0.5rem 0px gray;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.boxLogin .content p.button input:hover{
+  box-shadow: none;
+}
+
+.boxLogin .content p.link{
+  justify-content: flex-end;
+  margin: 1rem 0 0;
+  padding: 0.75rem 2rem 0.75rem;
+  border-top: 1px solid gainsboro;
+  background-color: #e1eaeb;
+}
+
+.boxLogin .content p.link a{
+  padding: 0.25rem .5rem;
+  background-color: var(--color-success);
+  border-radius: .5rem;
+  box-shadow: 0rem 0.25rem 0.25rem 0px grey;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.boxLogin .content p.link a:hover{
+  box-shadow: none;
 }
 
 #cadastro, 
@@ -31,12 +140,8 @@
   animation-fill-mode: both;
 }
 
-#cadastro{
-    display: none;
-}
 
-#paracadastro:target ~ .content #cadastro,
-#paralogin:target ~ .content #login{
+.fadeInLeft{
   z-index: 2;
   -webkit-animation-name: fadeInLeft;
   animation-name: fadeInLeft;
@@ -46,55 +151,58 @@
 }
  
 /* Efeito ao clicar no botão ( Cadastre-se ) */
-#registro:target ~ .content #login,
-#paralogin:target ~ .content #cadastro{
+.fadeOutLeft{
   -webkit-animation-name: fadeOutLeft;
   animation-name: fadeOutLeft;
 }
 
 /*fadeInLeft*/
 @-webkit-keyframes fadeInLeft {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-      -webkit-transform: translateX(0);
-    }
+  0% {
+    opacity: 0;
   }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
    
-  @keyframes fadeInLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0);
-    }
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
   }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
    
   /*fadeOutLeft*/
-  @-webkit-keyframes fadeOutLeft {
-    0% {
-      opacity: 1;
-      -webkit-transform: translateX(0);
-    }
-    100% {
-      opacity: 0;
-      -webkit-transform: translateX(-20px);
-      visibility: hidden;
-    }
+@-webkit-keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
   }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+    visibility: hidden;
+  }
+}
    
-  @keyframes fadeOutLeft {
-    0% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(-20px);
-      visibility: hidden;
-    }
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
   }
+  100% {
+    opacity: 0;
+    transform: translateX(-20px);
+    visibility: hidden;
+  }
+}
+
+body.noScrool{
+  overflow: hidden;
+}
