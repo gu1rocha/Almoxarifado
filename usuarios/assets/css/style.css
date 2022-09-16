@@ -2,19 +2,18 @@ main{
     display: block;
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     padding: 5.5rem 0 0 0;
     position: relative;
 }
 
-img{
-    width: 6rem;
-    height: 5rem;
-    object-fit: contain;
+.boxUsuario{
+    display: flex;
+    justify-content: center;
 }
 
 table{
-    width: 96%;
-    margin: 0 auto;
+    margin: 0 .5rem;
     table-layout: fixed;
     display: block;
     position: relative;
@@ -46,6 +45,7 @@ table tbody tr:nth-of-type(even) {
 
 ::-webkit-scrollbar {
     width: 1rem;
+    height: .7rem;
 } 
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
@@ -53,6 +53,59 @@ table tbody tr:nth-of-type(even) {
 ::-webkit-scrollbar-thumb {
     background-color: var(--color-primary);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.switch .slider:before {
+    border-radius: 50%;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.switch input:checked + .slider {
+    background-color: var(--color-primary);
+}
+  
+.switch input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-primary);
+}
+
+.switch input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
 
 @media screen and (min-width: 1541px){

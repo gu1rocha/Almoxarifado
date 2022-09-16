@@ -24,6 +24,16 @@ let ConsoltarBaseUsuarioResources = (Dadoslogin)=>{
     }
 }
 
+let ShowHidePassword = (box)=>{
+    if (box.querySelector('input').type === "password") {
+        box.querySelector('input').type = "text"
+        box.querySelector('span').innerText = 'visibility_off'
+    } else {
+        box.querySelector('input').type = "password";
+        box.querySelector('span').innerText = 'visibility'
+    }
+}
+
 let GetHTML = (url, method, callback, params = null)=>{
     let obj;
     try { 

@@ -71,6 +71,7 @@
   -moz-transition: all .1s linear;
   -webkit-appearance:none;
   box-shadow: inset 5rem 5rem white;
+  color: #000;
 }
 
 
@@ -99,6 +100,7 @@
   background-color: white;
   padding: 5px;
   box-sizing: border-box;
+  color: #000;
 }
 
 .boxLogin .content p.input input:focus + label,
@@ -137,6 +139,7 @@
   padding: 0.75rem 2rem 0.75rem;
   border-top: 1px solid gainsboro;
   background-color: #e1eaeb;
+  color: #000;
 }
 
 .boxLogin .content p.link a{

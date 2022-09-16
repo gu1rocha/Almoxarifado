@@ -1,7 +1,7 @@
 const boxCards = document.querySelector('.cards')
 const inventory = document.querySelector('.inventory')
 const boxOrcamento = document.querySelector('.boxOrcamento')
-const orcamentos = document.querySelector('.orcamentos')
+const orcamentos = boxOrcamento.querySelector('.orcamentos')
 
 const total = document.querySelector('.total')
 

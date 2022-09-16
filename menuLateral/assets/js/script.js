@@ -38,7 +38,7 @@ let showMenuLateral = ()=> {
             }
             aside.querySelector('#logout').addEventListener('click',()=>{
                 sessionStorage.removeItem('login')
-                window.location.href = '/'
+                window.location.href = '/Almoxarifado/'
             })
         }else{
             for (const link of aside.querySelectorAll('a')) {
