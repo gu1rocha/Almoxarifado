@@ -22,7 +22,7 @@ let showMenuLateral = ()=> {
         });
 
         Dadoslogin = sessionStorage.getItem('login')
-        let pathname = (location.pathname).replace('/','')
+        let pathname = (location.pathname).replaceAll('/','').replace('Almoxarifado','')
         pathname === 'index.html' || pathname === "" ? pathname = 'home' : ''
         if(!!JSON.parse(Dadoslogin)){
             let resources = ConsoltarBaseUsuarioResources(JSON.parse(Dadoslogin))

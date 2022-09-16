@@ -21,7 +21,7 @@ let SearchProducts = () => {
         searchBar.classList.remove('error')
         let cont = 0;
         for(let card of cards.querySelectorAll(".card")){
-            if(card.querySelector('h3').textContent.toLowerCase().includes(inputSearch.value.toLowerCase())){
+            if(StringtoSearch(card.querySelector('h3').textContent.toLowerCase()).includes(StringtoSearch(inputSearch.value.toLowerCase()))){
                 cont++
                 card.classList.remove('hidden')
             }else{

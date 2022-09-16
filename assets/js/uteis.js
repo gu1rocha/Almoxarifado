@@ -73,3 +73,22 @@ let Capitalize = str => {
     }
 	return newStr
 }
+
+let StringtoSearch = str => {
+    str = str.replace(/[ÀÁÂÃÄÅ]/,"A");
+    str = str.replace(/[àáâãäå]/,"a");
+    str = str.replace(/[ÈÉÊË]/,"E");
+    str = str.replace(/[èéêë]/,"e");
+    str = str.replace(/[ÍÌÎÏ]/,"I");
+    str = str.replace(/[íìïî]/,"i");
+    str = str.replace(/[ÓÒÔÕÖ]/,"O");
+    str = str.replace(/[óòõöô]/,"o");
+    str = str.replace(/[ÚÙÛÜ]/,"U");
+    str = str.replace(/[úùûü]/,"u");
+    str = str.replace(/[Ç]/,"C");
+    str = str.replace(/[ç]/,"c");
+
+    // o resto
+
+    return str.replace(/[^a-z0-9]/gi,''); 
+}

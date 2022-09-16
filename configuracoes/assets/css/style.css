@@ -33,7 +33,7 @@ main{
     border-radius: 5px;
     outline: none;
     width: 100%;
-    padding: 15px 20px;
+    padding: .75rem 1rem;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
     -moz-transition: all .1s linear;
@@ -45,7 +45,7 @@ main{
 .boxConfiguracoes p span {
     position: absolute;
     right: 10px;
-    bottom: 15px;
+    bottom: 10%;
     cursor: pointer;
 }
 
@@ -53,15 +53,19 @@ main{
     align-items: center;
 }
 
+.boxConfiguracoes p.button input{
+    color: white;
+}
+
 .boxConfiguracoes p.button input {
     padding: 1rem 3rem;
-    background-color: var(--color-primary);
+    background-color: #34b574;
     font-weight: bold;
     border-radius: 1rem;
-    box-shadow: 0rem 0.5rem 0.5rem 0px grey;
+    box-shadow: 0.3rem 0.3rem 0.3rem grey;
     cursor: pointer;
     transition: all 300ms ease;
-    width: 15rem;
+    width: 12rem;
     margin-top: 3rem;
     border: none;
 }

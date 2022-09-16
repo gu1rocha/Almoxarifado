@@ -22,16 +22,17 @@
         <script src="./../login/assets/js/script.js" defer></script>
 
         <link rel="stylesheet" href="./../menuLateral/assets/css/style.css">
-        <script src="./../menuLateral/assets/js/script.js"></script>
+        <script src="./../menuLateral/assets/js/script.js" defer></script>
 
         <link rel="stylesheet" href="./../assets/css/nav.css">
         <script src="./../assets/js/nav.js" defer></script>
 
-        <link rel="stylesheet" href="./assets/css/style.css">
-        <script src="./assets/js/script.js" defer></script>
-
         <link rel="stylesheet" href="./../loading/assets/css/style.css">
         <script src="./../loading/assets/js/script.js"></script>
+
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <script src="./assets/js/script.js" defer></script>
+        <script src="./assets/js/sorttable.js" defer></script>
     </head>
     <body>
         <nav>
@@ -53,7 +54,14 @@
         <div class="box">
             <main>
                 <div class="boxProdutos">
-                    <table>
+                    <div class="tableHeader">
+                        <div class="boxInput">
+                            <span class="material-symbols-sharp search">search</span>
+                            <input type="search" placeholder="Produtos">
+                        </div>
+                        <button onclick="window.location.href='./editAdd/index.html'"><span class="material-symbols-sharp">add</span> Novo</button>
+                    </div>
+                    <table class="sortable">
                         <thead>
                             <tr>
                               <th>Código</th>
