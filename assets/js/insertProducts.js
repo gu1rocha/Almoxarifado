@@ -91,6 +91,7 @@ let addItemOrcamento = item => {
 
         if(orcamento.length > 0){
             inventory.querySelector('h5').classList.add('active')
+            boxOrcamento.querySelector('.totalDown').classList.remove('hidden')
         }
 
         orcamentoCard.querySelector('.minus').addEventListener('click',(el)=>{
@@ -108,21 +109,25 @@ let addItemOrcamento = item => {
         })
 
         orcamentoCard.querySelector('input').addEventListener('change',(el)=>{
-            if(el.path[0].value > 0){
+            if(orcamentoCard.querySelector('input').value > 0){
                 alterarValor()
             }
         })
 
         orcamentoCard.querySelector('.delete').addEventListener('click',el=>{
-            let newOrcamento = orcamento.filter( item => item.id !== JSON.parse(el.path[4].dataset.item).id );
+            let newOrcamento = orcamento.filter( item => item.id !== JSON.parse(orcamentoCard.dataset.item).id );
             orcamento = newOrcamento;
-            el.path[4].remove();
+            orcamentoCard.remove();
             altualizarTotal()
             inventory.querySelector('h5').textContent = orcamento.length;
             const cards = boxCards.querySelectorAll('.card')
             
+            if(orcamento.length < 1){
+                boxOrcamento.querySelector('.totalDown').classList.add('hidden')
+            }
+
             for (const card of cards) {
-                if(JSON.parse(card.dataset.item).id === JSON.parse(el.path[4].dataset.item).id){
+                if(JSON.parse(card.dataset.item).id === JSON.parse(orcamentoCard.dataset.item).id){
                     card.querySelector('button').classList.remove('disabled')
                 }
             }

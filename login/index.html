@@ -13,23 +13,29 @@
 <body>
     <div class="boxLogin">
         <div class="content">
+          <div class="cancel">
+            <span class="material-symbols-sharp close">close</span>
+          </div>
             <div id="login">
-              <form method="post" action=""> 
+              <form > 
                 <h1>Login</h1> 
-                <p class="input"> 
+                <p class="input">
                   <input id="nome_login" name="nome_login" required="required" type="text" placeholder="l" autocomplete="username"/>
                   <label for="nome_login">Login</label>
                 </p>
                  
-                <p class="input"> 
+                <p class="input senha"> 
                   <input id="senha_login" name="senha_login" required="required" type="password" placeholder="s" autocomplete="current-password"/> 
                   <label for="senha_login">Senha</label>
+                  <span class="material-symbols-sharp">visibility</span>
                 </p>
                  
                 <p class="checkbox"> 
                   <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
                   <label for="manterlogado">Manter-me logado</label>
                 </p>
+
+                <h3></h3>
                  
                 <p class="button"> 
                   <input type="submit" value="Logar" /> 
@@ -44,24 +50,25 @@
             <div id="cadastro" class="hidden">
               <form method="post" action=""> 
                 <h1>Cadastro</h1> 
-
+                 
                 <p class="input"> 
-                  <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="l" autocomplete="given-name"/>
+                  <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="l" autocomplete="given-name">
                   <label for="nome_cad">Nome</label>
                 </p>
-
+                 
                 <p class="input"> 
-                  <input id="email_cad" name="email_cad" required="required" type="email" placeholder="l" autocomplete="email"/>
+                  <input id="email_cad" name="email_cad" required="required" type="email" placeholder="l" autocomplete="email">
                   <label for="email_cad">E-mail</label>
                 </p>
                  
-                <p class="input"> 
-                  <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="e" autocomplete="new-password"/>
+                <p class="input senha"> 
+                  <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="e" autocomplete="new-password">
                   <label for="senha_cad">Senha</label>
+                  <span class="material-symbols-sharp">visibility</span>
                 </p>
                  
                 <p class="button"> 
-                  <input type="submit" value="Cadastrar"/> 
+                  <input type="submit" value="Cadastrar"> 
                 </p>
                  
                 <p class="link">  

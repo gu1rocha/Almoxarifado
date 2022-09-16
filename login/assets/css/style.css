@@ -3,23 +3,37 @@
   top: 0;
   z-index: 4;
   display: flex;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   width: 100vw;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(147,184,189,0.2);
 }
 
 .boxLogin .content{
   border-radius: var(--border-radius-2);
   background-color: var(--color-white);
-  box-shadow: 0rem 0rem 2rem black;
+  box-shadow: var(--box-shadow);
   transition: all 300ms ease;
-  padding: 2rem 0 0; 
   width: 90%;
   max-width: 450px;
   position: relative;   
   overflow: hidden;
+  margin: 1rem 0;
+}
+
+.boxLogin .content .cancel{
+  margin: .5rem;
+}
+
+
+.boxLogin .content h3{
+  text-align: center;
+  color: var(--color-danger);
+}
+.boxLogin .content .cancel span{
+  cursor: pointer;
 }
 
 .boxLogin .content h1{
@@ -36,6 +50,7 @@
   background: -webkit-linear-gradient(left, rgba(147,184,189,0) 0%, var(--color-primary-variant) 20%, var(--color-primary) 53%,var(--color-primary-variant) 79%,rgba(147,184,189,0) 100%); 
   background: linear-gradient(left, rgba(147,184,189,0) 0%,rgba(147,184,189,0.8) 20%,rgba(147,184,189,1) 53%,rgba(147,184,189,0.8) 79%,rgba(147,184,189,0) 100%); 
 }
+
 .boxLogin .content p{
   position: relative;
   padding-top: 13px;
@@ -55,6 +70,14 @@
   -webkit-transition: all .1s linear;
   -moz-transition: all .1s linear;
   -webkit-appearance:none;
+  box-shadow: inset 5rem 5rem white;
+}
+
+
+.boxLogin .content p.input.senha span{
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
 }
 
 .boxLogin .content p.input input:focus{
@@ -201,8 +224,4 @@
     transform: translateX(-20px);
     visibility: hidden;
   }
-}
-
-body.noScrool{
-  overflow: hidden;
 }

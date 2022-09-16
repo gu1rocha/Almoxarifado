@@ -102,8 +102,13 @@ small{
 
 .error{
     background-color: var(--color-danger) !important;
+    box-shadow: inset 5rem 5rem var(--color-danger) !important;
 }
 
 .hidden{
     display: none !important;
+}
+
+.noScrool{
+    overflow: hidden;
 }

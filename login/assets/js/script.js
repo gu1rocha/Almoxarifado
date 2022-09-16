@@ -1,10 +1,45 @@
-let Dadoslogin = sessionStorage.getItem('login')
-let showLogin = document.getElementById('showLogin')
+let user = {}
+
+let ShowHidePassword = (box)=>{
+    if (box.querySelector('input').type === "password") {
+        box.querySelector('input').type = "text"
+        box.querySelector('span').innerText = 'visibility_off'
+    } else {
+        box.querySelector('input').type = "password";
+        box.querySelector('span').innerText = 'visibility'
+    }
+}
 
 let ShowLogin = ()=>{
+    const boxLogin = document.querySelector('.boxLogin')
     const login = document.querySelector('#login')
     const cadastro = document.querySelector('#cadastro')
-    
+
+    const boxSenhaLogin = login.querySelector('p.senha')
+    const boxSenhaCadastro = cadastro.querySelector('p.senha')
+
+    boxSenhaLogin.querySelector('span').addEventListener('click',()=>ShowHidePassword(boxSenhaLogin))
+    boxSenhaCadastro.querySelector('span').addEventListener('click',()=>ShowHidePassword(boxSenhaCadastro))
+
+    let Require = {}
+
+    boxLogin.querySelector('form').addEventListener('submit',(e)=>{
+        e.preventDefault()
+        user.usuario = login.querySelector('#nome_login').value
+        user.senha = login.querySelector('#senha_login').value
+        
+        Require = ConsoltarBaseUsuario()
+        if(Require.senha && Require.user){
+            document.querySelector('body').querySelector('.boxLogin').remove()
+            document.querySelector('body').classList.remove('noScrool')
+            sessionStorage.setItem('login',JSON.stringify(user))
+            showMenuLateral()
+        }else{
+            VerificarErro(Require.senha, login.querySelector('h3'), 'Senha Incorreta')
+            VerificarErro(Require.user, login.querySelector('h3'), 'Usuário Incorreto')
+        }
+    })
+
     login.querySelector('.link').querySelector('a').addEventListener('click',()=>{
         login.classList.toggle('fadeOutLeft')
         setTimeout(()=> {
@@ -24,47 +59,5 @@ let ShowLogin = ()=>{
             login.classList.toggle('hidden')
             login.classList.add('fadeInLeft')
         }, 100);
-        
     })
-}
-
-if(!!showLogin){
-    showLogin.addEventListener('click',()=>{ 
-    function ajax(url, method, callback, params = null) {
-        var obj;
-        try { 
-            obj = new XMLHttpRequest();  
-        }catch(e){   
-            try {     
-                obj = new ActiveXObject("Msxml2.XMLHTTP");     
-            } catch(e) {     
-                try { 
-                obj = new ActiveXObject("Microsoft.XMLHTTP");       
-                } catch(e) {       
-                alert("Your browser does not support Ajax.");       
-                return false;       
-                }     
-            }   
-        }
-        obj.open(method, url, true);
-        obj.setRequestHeader("Content-Type", "text/html");
-        obj.onreadystatechange = function() {
-            if(obj.readyState == 4) {
-                callback(obj);
-            } 
-        }
-        obj.send(JSON.stringify(params));
-        return obj; 
-    }
-        var ajax = ajax('login/index.html', 'get',  function(obj) { 
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(obj.responseText, "text/html");
-            document.querySelector('body').classList.add('noScrool')
-            document.querySelector('body').appendChild(doc.querySelector('.boxLogin'))
-            ShowLogin()
-        })
-        console.log(Dadoslogin)
-    })
-}else{
-    ShowLogin()
 }

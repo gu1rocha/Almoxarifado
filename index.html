@@ -12,7 +12,10 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/inicialize.css">
+    <link rel="stylesheet" href="/assets/css/inicialize.css">
+
+    <script src="/assets/js/usuarios.js"></script>
+    <script src="/assets/js/uteis.js"></script>
 
     <script src="./assets/js/invetario.js"></script>
     <script src="./assets/js/insertProducts.js" defer></script>
@@ -22,8 +25,19 @@
     <script src="./assets/js/jspdf/1.5.3.min.js"></script>
     <script src="./assets/js/generatePDF.js"></script>
 
+    <link rel="stylesheet" href="./loading/assets/css/style.css">
+    <script src="./loading/assets/js/script.js"></script>
+
     <link rel="stylesheet" href="./login/assets/css/style.css">
     <script src="./login/assets/js/script.js" defer></script>
+
+    <link rel="stylesheet" href="./menuLateral/assets/css/style.css">
+    <script src="./menuLateral/assets/js/script.js"></script>
+    
+    <link rel="stylesheet" href="/assets/css/nav.css">
+    <script src="/assets/js/nav.js" defer></script>
+
+    <script src="/assets/js/returnTop.js" defer></script>
 
 </head>
 <body>
@@ -47,59 +61,6 @@
         </div>
     </nav>
     <div class="box">
-        <aside>
-            <div class="top">
-                <div class="logo">
-                    <h2>ALMOXA. CAPRI</h2>
-                </div>
-                <div class="close" id="close-btn">
-                    <span class="material-symbols-sharp">close</span>
-                </div>
-            </div>
-            <div class="sidebar">
-                <a href="#" class="active">
-                    <span class="material-symbols-sharp">home</span>
-                    <h3>Página Inicial</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">grid_view</span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">inventory</span>
-                    <h3>Orçamentos</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">receipt_long</span>
-                    <h3>Pedidos</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">inventory_2</span>
-                    <h3>Produtos</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">mail</span>
-                    <h3>Messages</h3>
-                    <span class="message-count">15</span>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">settings</span>
-                    <h3>Configurações</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">manage_accounts</span>
-                    <h3>Usuários</h3>
-                </a>
-                <!--a href="#">
-                    <span class="material-symbols-sharp">logout</span>
-                    <h3>Logout</h3>
-                </a-->
-                <a id="showLogin">
-                    <span class="material-symbols-sharp">login</span>
-                    <h3>Login</h3>
-                </a>
-            </div>
-        </aside>
         <main>
             <div class="cards"></div>
             
@@ -128,7 +89,7 @@
                         <span class="material-symbols-sharp close">close</span>
                     </div>
                     <div class="orcamentos"></div>
-                    <div class="end">
+                    <div class="end totalDown hidden">
                         <div class="total">Total</div>
                         <div class="downPDF">
                             <button class="download-button">

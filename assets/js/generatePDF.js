@@ -3,7 +3,8 @@ let genPDF = () => {
     let pageHeight = doc.internal.pageSize.height
 
     let changeDateFormat = data => `${data.getDate() < 10 ? `0${data.getDate()}` : data.getDate()}/${(data.getMonth() + 1) < 10 ? `0${data.getMonth() + 1}`: data.getMonth() + 1}/${data.getFullYear()}`
-    let changeTimeFormat = data => `${data.getHours()}:${data.getMinutes()}`
+    let changeTimeFormat = data => `${data.getHours() < 10 ? `0${data.getHours()}` : data.getHours()}:${data.getMinutes() < 10 ? `0${data.getMinutes()}` : data.getMinutes()}
+                                    `
     let InsertTextoComQuebra = (texto, max, x, y) => doc.text(doc.splitTextToSize(texto, max), x, y)
 
     let data = new Date()
