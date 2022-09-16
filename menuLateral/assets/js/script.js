@@ -52,7 +52,7 @@ let showMenuLateral = ()=> {
             }
             
             showLogin.addEventListener('click',()=>{
-                var ajax = GetHTML('./../login/index.html', 'get',  function(obj) {
+                var ajax = GetHTML('./login/index.html', 'get',  function(obj) {
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(obj.responseText, "text/html");
                     document.querySelector('body').classList.add('noScrool')
