@@ -1,6 +1,6 @@
 
 Dadoslogin = sessionStorage.getItem('login')
-let pathname = (location.pathname).replaceAll('/','')
+let pathname = (location.pathname).replaceAll('/','').replace('Almoxarifado','')
 pathname === 'index.html' || pathname === "" ? pathname = 'home' : ''
 if(!!Dadoslogin){
     let resources = ConsoltarBaseUsuarioResources(JSON.parse(Dadoslogin))
