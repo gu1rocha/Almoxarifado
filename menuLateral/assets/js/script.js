@@ -1,5 +1,5 @@
 let showMenuLateral = ()=> {
-    GetHTML('./menuLateral/index.html', 'get',  function(obj) {
+    GetHTML('/Almoxarifado/menuLateral/index.html', 'get',  function(obj) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(obj.responseText, "text/html");
 
