@@ -7,51 +7,6 @@ main{
     position: relative;
 }
 
-.tableHeader{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 96%;
-    margin: 0 auto;
-    padding: .5rem 0;
-    gap: .5rem;
-}
-
-.tableHeader .boxInput{
-    padding: 0.4rem .5rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
-    background-color: white;
-    display: inline-flex;
-    gap: .5rem;
-}
-
-.tableHeader .boxInput span{
-    cursor: pointer;
-}
-
-.tableHeader input::placeholder{
-    color: var(--color-primary);
-}
-
-.tableHeader button{
-    padding: 0.5rem 1rem;
-    color: white;
-    background-color: var(--color-primary);
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 0.5rem;
-}
-
-img{
-    width: 6rem;
-    height: 5rem;
-    object-fit: contain;
-    border-radius: .3rem;
-}
-
 table{
     width: 96%;
     margin: 0 auto;
@@ -77,22 +32,38 @@ table thead th{
     cursor: pointer;
 }
 
-table thead th:nth-child(3){
-    width: 100%;
-    min-width: 12rem;
-}
-
-
 table tbody tr td{
     padding: 0.5rem;
 }
 
 table tbody tr td:last-child{
     display: flex;
-    height: 6rem;
     justify-content: space-between;
     align-items: center;
     gap: .2rem;
+}
+
+table tbody tr td:nth-child(2) span{
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.2rem;
+    font-weight: bold;
+    color: #000;
+}
+
+table tbody tr td:nth-child(2) span.finalizado{
+    background-color: var(--color-success);
+}
+
+table tbody tr td:nth-child(2) span.pendente{
+    background-color: var(--color-warning);
+}
+
+table tbody tr td:nth-child(2) span.cancelado{
+    background-color: var(--color-danger);
+}
+
+table tbody tr td:nth-child(2) span.espirado{
+    background-color: #7d8da1;
 }
 
 table tbody tr td:last-child span{
@@ -150,5 +121,6 @@ table::-webkit-scrollbar-thumb {
         gap: 1rem;
         margin: 0 auto;
         width: fit-content;
+        min-height: 100vh;
     }
 }

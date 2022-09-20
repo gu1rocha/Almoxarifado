@@ -13,3 +13,18 @@ document.getElementById('emailConf').value = dadosConfig[1]
 document.getElementById('senhaConf').value = dadosConfig[2]
 
 document.querySelector('form').querySelector('span').addEventListener('click',()=>ShowHidePassword(document.querySelector('.input.senha')))
+
+document.getElementById('salvarConfing').addEventListener('click',(e)=>{
+    e.preventDefault()
+    showMessageBox({
+        type: 'warning',
+        title: 'Atualizar dados',
+        text: `Realmente deseja <strong>atualizar</strong> os dados?`,
+        accept:{
+            function : function(){
+                console.log('atualizar dados')
+            },
+            text: 'Atualizar'
+        }
+    })
+})

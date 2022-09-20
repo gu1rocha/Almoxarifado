@@ -1,15 +1,55 @@
 main{
     display: block;
     width: 100%;
+    max-width: 1500px;
     height: 100%;
     min-height: 100vh;
     padding: 5.5rem 0 0 0;
     position: relative;
 }
 
+.tableHeader{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 96%;
+    margin: 0 auto;
+    padding: .5rem 0;
+    gap: .5rem;
+}
+
+.tableHeader .boxInput{
+    padding: 0.4rem .5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    background-color: white;
+    display: inline-flex;
+    gap: .5rem;
+}
+
+.tableHeader .boxInput span{
+    cursor: pointer;
+}
+
+.tableHeader input::placeholder{
+    color: var(--color-primary);
+}
+
+.tableHeader button{
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
 .boxUsuario{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    width: 98.5%;
 }
 
 table{

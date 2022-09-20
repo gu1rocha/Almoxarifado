@@ -1,4 +1,3 @@
-
 Dadoslogin = sessionStorage.getItem('login')
 let pathname = location.pathname.split('/')[2]
 pathname === 'index.html' || pathname === "" ? pathname = 'home' : ''

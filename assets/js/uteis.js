@@ -88,7 +88,10 @@ let StringtoSearch = str => {
     str = str.replace(/[Ç]/,"C");
     str = str.replace(/[ç]/,"c");
 
-    // o resto
-
     return str.replace(/[^a-z0-9]/gi,''); 
 }
+
+let leftPad = (value, totalWidth)=>{
+    var length = totalWidth - value.toString().length + 1;
+    return Array(length).join('0') + value;
+};

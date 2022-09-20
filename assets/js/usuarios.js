@@ -16,7 +16,7 @@ let usuarios = {
                 email: 'direcaocapri@gmail.com'
             },
             senha: 'direcaocapri2022',
-            resources: ['pedidos','configuracoes']
+            resources: ['pedidos','orcamentos','configuracoes']
         },
         {
             id: 3, 

@@ -1,6 +1,7 @@
 main{
     display: block;
     width: 100%;
+    max-width: 1500px;
     height: 100%;
     min-height: 100vh;
     padding: 5.5rem 0 0 0;
@@ -45,7 +46,7 @@ main{
 .boxConfiguracoes p span {
     position: absolute;
     right: 10px;
-    bottom: 10%;
+    bottom: 6px;
     cursor: pointer;
 }
 
@@ -53,21 +54,19 @@ main{
     align-items: center;
 }
 
-.boxConfiguracoes p.button input{
-    color: white;
-}
-
 .boxConfiguracoes p.button input {
-    padding: 1rem 3rem;
-    background-color: #34b574;
+    padding: .5rem;
+    background-color: var(--color-primary);
     font-weight: bold;
-    border-radius: 1rem;
-    box-shadow: 0.3rem 0.3rem 0.3rem grey;
+    border-radius: .5rem;
+    box-shadow: 0.2rem 0.2rem 0.2rem grey;
     cursor: pointer;
     transition: all 300ms ease;
-    width: 12rem;
+    width: 8rem;
     margin-top: 3rem;
     border: none;
+    font-size: 1rem;
+    color: white;
 }
 
 .boxConfiguracoes p.button input:hover{

@@ -37,8 +37,17 @@ let showMenuLateral = ()=> {
                 }
             }
             aside.querySelector('#logout').addEventListener('click',()=>{
-                sessionStorage.removeItem('login')
-                window.location.href = '/Almoxarifado/'
+                
+                showMessageBox({
+                    type: 'warning',
+                    title: 'Logout',
+                    text: `Realmente deseja <strong>sair</strong> do sistema?`,
+                    accept:{
+                        function : function(){sessionStorage.removeItem('login')
+                        window.location.href = '/Almoxarifado/'},
+                        text: 'Sair'
+                    }
+                })
             })
         }else{
             for (const link of aside.querySelectorAll('a')) {

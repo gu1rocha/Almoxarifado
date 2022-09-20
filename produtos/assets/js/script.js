@@ -24,6 +24,17 @@ inventario.inventario.forEach(item => {
                         `
     card.innerHTML = cardContent;
     tbody.appendChild(card);
+    card.querySelector('.delet').addEventListener('click',()=>{
+        showMessageBox({
+            type: 'danger',
+            title: 'Excluir Produto',
+            text: `Realmente deseja excluir o produto: <br/><strong>${item.descricao}</strong>?`,
+            accept:{
+                function : function(){card.remove()},
+                text: 'Excluir'
+            }
+        })
+    })
 })
 createLoading(document.querySelector('body')).remove()
 
@@ -39,3 +50,9 @@ let SearchProducts = ()=>{
 
 search.addEventListener('click',SearchProducts)
 inputSearch.addEventListener("keypress", (event) => {if(event.key === "Enter") SearchProducts()});
+
+for (const delet of tbody.querySelectorAll('.delet')) {
+    delet.addEventListener('click',()=>{
+
+    })
+}

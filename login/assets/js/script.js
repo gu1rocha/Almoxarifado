@@ -11,6 +11,8 @@ let ShowLogin = ()=>{
     boxSenhaLogin.querySelector('span').addEventListener('click',()=>ShowHidePassword(boxSenhaLogin))
     boxSenhaCadastro.querySelector('span').addEventListener('click',()=>ShowHidePassword(boxSenhaCadastro))
 
+    login.querySelector('#nome_login').focus()
+    
     let Require = {}
 
     boxLogin.querySelector('form').addEventListener('submit',(e)=>{
