@@ -1,40 +1,5 @@
-let orcamentos = {
-    orcamentos: [
-        {
-            id: 1,
-            numero: 1,
-            status: 'espirado',
-            produtos:[
-                {
-                    id: 269,
-                    quantidade: 50
-                },
-                {
-                    id: 563,
-                    quantidade: 3
-                },
-                {
-                    id: 45,
-                    quantidade: 1
-                },
-                {
-                    id: 95,
-                    quantidade: 3
-                }
-            ],
-            dataCreat: '2022-08-01T07:00:00-00:00',
-            dataLastAlt : '2022-08-02T07:00:00-00:00',
-            alteracoes:[
-                {
-                    idUser : 3,
-                    dataCreat: '2022-08-01T07:00:00-00:00',
-                    type: 'creat'
-                },{
-                    dataCreat: '2022-08-02T07:00:00-00:00',
-                    type: 'expired'
-                }
-            ]
-        },
+let pedidos = {
+    pedidos: [
         {
             id: 2,
             numero: 2,
@@ -117,11 +82,6 @@ let orcamentos = {
                     idUser : 3,
                     dataCreat: '2022-08-05T06:00:00-00:00',
                     type: 'creat'
-                },
-                {
-                    idUser : 3,
-                    dataCreat: '2022-08-05T07:00:00-00:00',
-                    type: 'altered'
                 }
             ]
         },

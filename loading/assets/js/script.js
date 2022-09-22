@@ -1,6 +1,6 @@
 let createLoading = (obj) =>{
     let load = {
-        creat : function(){
+        creat : ()=>{
             let card = document.createElement('div');
             card.classList.add('bgLoad')
             let load = `
@@ -18,7 +18,7 @@ let createLoading = (obj) =>{
             card.innerHTML = load;
             obj.appendChild(card);
         },
-        remove : function(){
+        remove : ()=>{
             obj.querySelector('.bgLoad').remove()
         }
     }

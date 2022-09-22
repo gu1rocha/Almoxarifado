@@ -32,7 +32,7 @@ let SalvarProduto = () =>{
             src: document.querySelector('img').src
         }
     }else{
-        showMessageBox({
+        showMessageBox().showMessage({
             type: 'danger',
             title: 'Dados incompletos',
             text: `Para atualizar preencha os campos obrigatórios!`
@@ -46,7 +46,7 @@ let AtualizarProduto = () =>{
     erro = ValidarDados(document.querySelector('#uniProd'), erro)
     erro = ValidarDados(document.querySelector('#valProd'), erro)
     erro = ValidarDados(document.querySelector('#locProd'), erro)
-    
+    console.log(erro)
     if(!erro){
         DadosProduto = {
             codigo: document.querySelector('#codProd').value,
@@ -58,7 +58,7 @@ let AtualizarProduto = () =>{
             src: document.querySelector('img').src
         }
     }else{
-        showMessageBox({
+        showMessageBox().showMessage({
             type: 'danger',
             title: 'Dados incompletos',
             text: `Para atualizar preencha os campos obrigatórios!`
@@ -86,7 +86,7 @@ if(idProduto > 0){
     document.querySelector('img').src = Produto.src !== '' ? Produto.src : "/Almoxarifado/assets/img/noImg.png"
 
     salvarProd.addEventListener('click',()=>{
-        showMessageBox({
+        showMessageBox().showMessage({
             type: 'warning',
             title: 'Atualização de dados',
             text: `Realmente deseja <strong>atualizar</strong> o produto?`,
@@ -104,7 +104,7 @@ if(idProduto > 0){
     NamePage.innerText = "Adicionar Produto"
 
     salvarProd.addEventListener('click',()=>{
-        showMessageBox({
+        showMessageBox().showMessage({
             type: 'warning',
             title: 'Salvar dados',
             text: `Realmente deseja <strong>cadastrar</strong> o produto?`,
@@ -112,7 +112,7 @@ if(idProduto > 0){
                 function : function(){
                     SalvarProduto()
                 },
-                text: 'Atualizar'
+                text: 'Salvar'
             }
         })
     })

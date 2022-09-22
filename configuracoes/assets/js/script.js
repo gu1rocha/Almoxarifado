@@ -16,7 +16,7 @@ document.querySelector('form').querySelector('span').addEventListener('click',()
 
 document.getElementById('salvarConfing').addEventListener('click',(e)=>{
     e.preventDefault()
-    showMessageBox({
+    showMessageBox().showMessage({
         type: 'warning',
         title: 'Atualizar dados',
         text: `Realmente deseja <strong>atualizar</strong> os dados?`,

@@ -95,3 +95,9 @@ let leftPad = (value, totalWidth)=>{
     var length = totalWidth - value.toString().length + 1;
     return Array(length).join('0') + value;
 };
+
+let dateTimeToUTC = date =>{
+    var offset = (new Date().getTimezoneOffset() / 60);
+    var data = new Date(date.replace('T',' ') + "  " + (offset > 0 ? "-" + offset : (offset * -1)));
+    return data.toLocaleString('pt-BR', { timeZone: 'UTC' }).replace(/(\d*)\/(\d*)\/(\d*)\s(\d*):(\d*):(\d*).*/, '$1/$2/$3 às $4:$5:$6');
+}

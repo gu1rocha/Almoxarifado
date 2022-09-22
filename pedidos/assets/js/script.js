@@ -105,7 +105,7 @@ let finalyOrcamento = (id) =>{
     console.log(id)
 }
 
-for (const orcamento of orcamentos.orcamentos) {
+for (const orcamento of pedidos.pedidos) {
     valor = 0
 
     for (const produto of orcamento.produtos) {
@@ -125,7 +125,6 @@ for (const orcamento of orcamentos.orcamentos) {
                             ${orcamento.status === 'pendente'? `
                                 <span class="material-symbols-sharp download">download</span>
                                 <span class="material-symbols-sharp finaly">done</span>
-                                <span class="material-symbols-sharp edit" onclick="window.location.href='./editAdd/index.html?p=${orcamento.id}'">edit_square</span>
                                 <span class="material-symbols-sharp cancel">cancel</span>
                             ` : '<span class="material-symbols-sharp download">download</span>'}
                         </td>

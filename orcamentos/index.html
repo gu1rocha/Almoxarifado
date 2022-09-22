@@ -17,6 +17,7 @@
         <script src="./../assets/js/uteis.js"></script>
         <script src="./../assets/js/VerificacaoPage.js"></script>
         <script src="./../assets/js/orcamentos.js"></script>
+        <script src="./../assets/js/invetario.js"></script>
 
         <link rel="stylesheet" href="./../login/assets/css/style.css">
         <script src="./../login/assets/js/script.js" defer></script>
@@ -60,17 +61,20 @@
                     <div class="tableHeader">
                         <div class="boxInput">
                             <span class="material-symbols-sharp search">search</span>
-                            <input type="search" placeholder="Produtos">
+                            <input type="search" placeholder="Número do orçamento">
                         </div>
                         <button onclick="window.location.href='./editAdd/index.html'"><span class="material-symbols-sharp">add</span> Novo</button>
                     </div>
-                    <table class="sortable">
+                    <table class="orcamentos sortable">
                         <thead>
                             <tr>
                               <th>Número</th>
                               <th>Status</th>
                               <th>Produtos</th>
                               <th>Valor</th>
+                              <th>Data Criação</th>
+                              <th>Data Alteração</th>
+                              <th>Alterações</th>
                               <th>Ações</th>
                             </tr>
                         </thead>
@@ -78,6 +82,33 @@
                     </table>
                 </div>
             </main>
+        </div>
+        <div class="bgShowProdutos hidden">
+            <div class="boxShowProdutos">
+                <div class="head">
+                    <h2>Produtos</h2><span class="material-symbols-sharp close">close</span>
+                </div>
+                <table class="produtos sortable">
+                    <thead>
+                        <tr>
+                            <th>Imagem</th>
+                            <th>Descrição</th>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="bgShowAlteracoes hidden">
+            <div class="boxShowAlteracoes">
+                <div class="head">
+                    <h2>Alterações</h2><span class="material-symbols-sharp close">close</span>
+                </div>
+                <ul></ul>
+            </div>
         </div>
     </body>
 </html>

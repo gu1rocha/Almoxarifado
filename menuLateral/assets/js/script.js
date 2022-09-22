@@ -38,7 +38,7 @@ let showMenuLateral = ()=> {
             }
             aside.querySelector('#logout').addEventListener('click',()=>{
                 
-                showMessageBox({
+                showMessageBox().showMessage({
                     type: 'warning',
                     title: 'Logout',
                     text: `Realmente deseja <strong>sair</strong> do sistema?`,
