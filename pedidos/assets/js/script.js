@@ -19,6 +19,19 @@ let ConsultarProdutosBd = IdProduto =>{
     }
 }
 
+let ConsultarUsuarios = IdUsuario =>{
+    for (const usuario of usuarios.usuarios) {
+        if(usuario.id === IdUsuario)
+            return usuario.user.nome
+    }
+}
+
+let verificarUserProduto = () =>  
+        (!!Dadoslogin && (ConsoltarBaseUsuarioResources(JSON.parse(Dadoslogin))[0].toString().includes("produtos"))) ? true : false
+
+        
+if(!verificarUserProduto()) tableProdu.querySelector('.localizacao').remove()
+
 let ShowProdutos = produtos =>{
     createLoading(document.querySelector('body')).creat()
     tableProdu.querySelector('tbody').innerHTML = ''
@@ -28,6 +41,7 @@ let ShowProdutos = produtos =>{
                         <img src="${item.src !== '' ? item.src : "/Almoxarifado/assets/img/noImg.png"}">
                     </td>
                     <td>${item.descricao}</td>
+                    ${verificarUserProduto() === true ? `<td>${item.localizacao ? item.localizacao : 'Sem localização'}</td>` : ''}
                     <td>${produto.quantidade}</td>
                     <td>${item.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
                     `
@@ -41,13 +55,6 @@ bgShowProdutos.querySelector('.close').addEventListener('click',()=>{
     bgShowProdutos.classList.add('hidden')
     tableProdu.querySelector('tbody').innerHTML = ''
 })
-
-let ConsultarUsuarios = IdUsuario =>{
-    for (const usuario of usuarios.usuarios) {
-        if(usuario.id === IdUsuario)
-            return usuario.user.nome
-    }
-}
 
 let statusPast = type =>{
     if(type === 'expired'){
@@ -86,7 +93,7 @@ bgShowAlteracoes.querySelector('.close').addEventListener('click',()=>{
     listAlteracoes.innerHTML = ''
 })
 
-let cancelOrcamento = ()=>{
+let cancelPedido = ()=>{
     showMessageBox().showMessage({
         type: 'danger',
         title: 'Cancelar orçamento',
@@ -101,28 +108,28 @@ let cancelOrcamento = ()=>{
     })
 }
 
-let finalyOrcamento = (id) =>{
+let finalyPedido = (id) =>{
     console.log(id)
 }
 
-for (const orcamento of pedidos.pedidos) {
+for (const newPedido of pedidos.pedidos) {
     valor = 0
 
-    for (const produto of orcamento.produtos) {
+    for (const produto of newPedido.produtos) {
         valor += ConsultarProdutosBd(produto.id).valor * produto.quantidade
     }
     const card = document.createElement('tr')
-    card.dataset.item = JSON.stringify(orcamento)
+    card.dataset.item = JSON.stringify(newPedido)
     const cardContent = `
-                        <td>${leftPad(orcamento.numero, 6)}</td>
-                        <td><span class="${orcamento.status}">${Capitalize(orcamento.status)}</span></td>
-                        <td>Produtos<span class="material-symbols-sharp expanProdu">expand_more</span></td>
+                        <td>${leftPad(newPedido.numero, 6)}</td>
+                        <td><span class="${newPedido.status}">${Capitalize(newPedido.status)}</span></td>
+                        <td><span>Produtos</span><span class="material-symbols-sharp expanProdu">expand_more</span></td>
                         <td>${valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
-                        <td>${dateTimeToUTC(orcamento.dataCreat)}</td>
-                        <td>${dateTimeToUTC(orcamento.dataLastAlt)}</td>
+                        <td>${dateTimeToUTC(newPedido.dataCreat)}</td>
+                        <td>${dateTimeToUTC(newPedido.dataLastAlt)}</td>
                         <td>Alterações<span class="material-symbols-sharp expandAlter">expand_more</span></td>
                         <td>
-                            ${orcamento.status === 'pendente'? `
+                            ${newPedido.status === 'pendente'? `
                                 <span class="material-symbols-sharp download">download</span>
                                 <span class="material-symbols-sharp finaly">done</span>
                                 <span class="material-symbols-sharp cancel">cancel</span>
@@ -132,19 +139,19 @@ for (const orcamento of pedidos.pedidos) {
     card.innerHTML = cardContent;
     tbody.appendChild(card);
     card.querySelector('.expanProdu').addEventListener('click',()=>{
-        ShowProdutos(orcamento.produtos)
+        ShowProdutos(newPedido.produtos)
     })
     card.querySelector('.expandAlter').addEventListener('click',()=>{
-        ShowAlteracoes(orcamento.alteracoes)
+        ShowAlteracoes(newPedido.alteracoes)
     })
     if(!!card.querySelector('.cancel'))
     card.querySelector('.cancel').addEventListener('click',()=>{
         showMessageBox().showMessage({
             type: 'danger',
-            title: 'Cancelar orçamento',
-            text: `Realmente deseja cancelar o orçamento de número: <br/><strong>${leftPad(orcamento.numero, 6)}</strong>?`,
+            title: 'Cancelar pedido',
+            text: `Realmente deseja cancelar o orçamento de número: <br/><strong>${leftPad(newPedido.numero, 6)}</strong>?`,
             accept:{
-                function: ()=>{ cancelOrcamento(orcamento.numero)},
+                function: ()=>{ cancelPedido(newPedido)},
                 text: 'Sim'
             }
         })
@@ -152,12 +159,28 @@ for (const orcamento of pedidos.pedidos) {
     if(!!card.querySelector('.finaly'))
     card.querySelector('.finaly').addEventListener('click',()=>{
         showMessageBox().showMessage({
-            type: 'danger',
-            title: 'Finalizar orçamento',
-            text: `Realmente deseja finalizar o orçamento de número: <br/><strong>${leftPad(orcamento.numero, 6)}</strong>?`,
+            type: 'warning',
+            title: 'Finalizar pedido',
+            text: `Realmente deseja finalizar o orçamento de número: <br/><strong>${leftPad(newPedido.numero, 6)}</strong>?`,
             accept:{
-                function: ()=>{ finalyOrcamento(orcamento.numero)},
-                text: 'Sim'
+                function: ()=>{ finalyPedido(newPedido.numero)},
+                text: 'Finalizar'
+            }
+        })
+    })
+    if(!!card.querySelector('.download'))
+    card.querySelector('.download').addEventListener('click',()=>{
+        showMessageBox().showMessage({
+            type: 'success',
+            title: 'Download pedido',
+            text: `Deseja fazer o download do pedido de número: <br/><strong>${leftPad(newPedido.numero, 6)}</strong>?`,
+            accept:{
+                function: ()=>{
+                    createLoading(document.querySelector('body')).creat()
+                    DownloadPedido(newPedido)
+                    createLoading(document.querySelector('body')).remove()
+                },
+                text: 'Download'
             }
         })
     })
@@ -165,7 +188,7 @@ for (const orcamento of pedidos.pedidos) {
 
 
 
-let SearchOrcamentos = ()=>{
+let SearchPedidos = ()=>{
     for (const tr of tbody.querySelectorAll('tr')) {
         let item = JSON.parse(tr.dataset.item)
         if(!inputSearch.value){
@@ -179,5 +202,5 @@ let SearchOrcamentos = ()=>{
     }
 }
 
-search.addEventListener('click',()=>{SearchOrcamentos()})
-inputSearch.addEventListener("keypress", (event) => {if(event.key === "Enter") SearchOrcamentos()});
+search.addEventListener('click',()=>{SearchPedidos()})
+inputSearch.addEventListener("keypress", (event) => {if(event.key === "Enter") SearchPedidos()});

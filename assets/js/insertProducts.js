@@ -1,7 +1,7 @@
 const boxCards = document.querySelector('.cards')
 const inventory = document.querySelector('.inventory')
 const boxOrcamento = document.querySelector('.boxOrcamento')
-const orcamentos = boxOrcamento.querySelector('.orcamentos')
+const orcamentoLocal = boxOrcamento.querySelector('.orcamentos')
 
 const total = document.querySelector('.total')
 
@@ -25,7 +25,7 @@ inventario.inventario.forEach(item => {
     boxCards.appendChild(card);
 })
 
-let orcamento = [];
+let orcamentoList = [];
 let orcQtd = ''
 let valorTotal = 0
 
@@ -37,9 +37,10 @@ let altualizarTotal = () => {
     total.textContent = `Total: ${valorTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}`
 }
 
-let addItemOrcamento = item => {
-    orcamento.push(JSON.parse(item.dataset.item))
-    orcamento[orcamento.length - 1].qtdCompra = 1
+let addItemOrcamento = (item, qtdCompra = 1) => {
+    let ProdAtu = (!!item.dataset) ? JSON.parse(item.dataset.item) : (item)
+    orcamentoList.push(ProdAtu)
+    orcamentoList[orcamentoList.length - 1].qtdCompra = qtdCompra
     setTimeout(()=> {
 
         let alterarValor = ()=>{
@@ -60,10 +61,10 @@ let addItemOrcamento = item => {
             altualizarTotal()
         }
 
-        inventory.querySelector('h5').textContent = orcamento.length;
+        inventory.querySelector('h5').textContent = orcamentoList.length;
         const orcamentoCard = document.createElement('div');
         orcamentoCard.classList.add('orcamento');
-        let novoOrc = orcamento[orcamento.length - 1]
+        let novoOrc = ProdAtu
         orcamentoCard.dataset.item = JSON.stringify(novoOrc)
         const orcamentoContent = `
                                  <img src="${novoOrc.src !== '' ? novoOrc.src : "./assets/img/noImg.png"}">
@@ -73,7 +74,7 @@ let addItemOrcamento = item => {
                                         <div>
                                             <div class="input-group">
                                                 <button type="button" class="circle minus"><span class="material-symbols-sharp">remove</span></button>
-                                                <input class="input-group-field" type="number" name="quantity" value="1" min="1" max="${novoOrc.quantidade}" oninput="validity.valid ? this.save = value : value = this.save;">
+                                                <input class="input-group-field" type="number" name="quantity" value="${qtdCompra}" min="1" max="${novoOrc.quantidade}" oninput="validity.valid ? this.save = value : value = this.save;">
                                                 <button type="button" class="circle plus"><span class="material-symbols-sharp">add</span></button>
                                             </div>
                                         </div>
@@ -86,10 +87,10 @@ let addItemOrcamento = item => {
                                  `
                                  
         orcamentoCard.innerHTML = orcamentoContent;
-        orcamentos.appendChild(orcamentoCard);
+        orcamentoLocal.appendChild(orcamentoCard);
         alterarValor()
 
-        if(orcamento.length > 0){
+        if(orcamentoList.length > 0){
             inventory.querySelector('h5').classList.add('active')
             boxOrcamento.querySelector('.totalDown').classList.remove('hidden')
         }
@@ -115,14 +116,14 @@ let addItemOrcamento = item => {
         })
 
         orcamentoCard.querySelector('.delete').addEventListener('click',el=>{
-            let newOrcamento = orcamento.filter( item => item.id !== JSON.parse(orcamentoCard.dataset.item).id );
-            orcamento = newOrcamento;
+            let newOrcamento = orcamentoList.filter( item => item.id !== JSON.parse(orcamentoCard.dataset.item).id );
+            orcamentoList = newOrcamento;
             orcamentoCard.remove();
             altualizarTotal()
-            inventory.querySelector('h5').textContent = orcamento.length;
+            inventory.querySelector('h5').textContent = orcamentoList.length;
             const cards = boxCards.querySelectorAll('.card')
             
-            if(orcamento.length < 1){
+            if(orcamentoList.length < 1){
                 boxOrcamento.querySelector('.totalDown').classList.add('hidden')
             }
 
@@ -133,10 +134,8 @@ let addItemOrcamento = item => {
             }
         })
 
-    }, 200);
+    }, 00);
 }
-
-
 
 const carts = boxCards.querySelectorAll('button');
 

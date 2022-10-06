@@ -85,7 +85,7 @@ table tbody tr td{
     white-space: nowrap;
 }
 
-table tbody tr td:last-child{
+table.orcamentos tbody tr td:last-child{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -209,6 +209,14 @@ table::-webkit-scrollbar-thumb {
     justify-content: space-between;
 }
 
+.bgShowProdutos .boxShowProdutos .head{
+    width: 100%;
+}
+
+.boxShowProdutos table{
+    margin: 0;
+}
+
 .bgShowProdutos .boxShowProdutos .head h2, .bgShowAlteracoes .boxShowAlteracoes .head h2{
     color: #000;
 }
@@ -241,6 +249,7 @@ table::-webkit-scrollbar-thumb {
 .bgShowProdutos .boxShowProdutos table tbody tr td:nth-child(3), .bgShowProdutos .boxShowProdutos table tbody tr td:nth-child(4){
     display: table-cell;
     text-align: right;
+    white-space: nowrap;
 }
 
 .bgShowProdutos table img{

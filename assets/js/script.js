@@ -8,6 +8,7 @@ const cards = document.querySelector('.cards');
 const noFound = document.querySelector('.noFound');
 
 const download = document.querySelector('.download-button');
+const finalyOrcamento = document.querySelector('.finalyOrcamento')
 
 function alterar_url(nova){
     history.pushState({}, null, nova);
@@ -43,6 +44,44 @@ let SearchProducts = () => {
 if(urlParams.get('p') !== ''){
     inputSearch.value = urlParams.get('p')
     SearchProducts()
+}
+
+let Orcamento = {}
+
+let verificarUser = () =>  (!!Dadoslogin && (ConsoltarBaseUsuarioResources(JSON.parse(Dadoslogin))[0].toString().includes("orcamentos"))) ? true : false
+
+if(!!urlParams.get('o') && verificarUser()){
+    for (const orcamento of orcamentos.orcamentos) {
+        if(orcamento.id === +urlParams.get('o')) {
+            Orcamento = orcamento 
+            break
+        }
+    }
+    for (const produto of Orcamento.produtos) {
+        let newProduto = {}
+        for (const iterator of inventario.inventario) {
+            if(iterator.id === produto.id){
+                newProduto = iterator
+                break
+            }
+        }
+        addItemOrcamento(newProduto, produto.quantidade)
+    }
+    finalyOrcamento.innerText = 'Atualizar Orçamento'
+
+    finalyOrcamento.addEventListener('click',()=>{
+        card.querySelector('.finaly').addEventListener('click',()=>{
+            showMessageBox().showMessage({
+                type: 'warning',
+                title: 'Finalizar orçamento',
+                text: `Realmente deseja ataluzar o orçamento de número: <br/><strong>${leftPad(Orcamento.id, 6)}</strong>?`,
+                accept:{
+                    function: ()=>{ finalyOrcamento(Orcamento.id)},
+                    text: 'Sim'
+                }
+            })
+        })
+    })
 }
 
 search.addEventListener('click',SearchProducts)

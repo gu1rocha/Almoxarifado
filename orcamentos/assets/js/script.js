@@ -19,6 +19,11 @@ let ConsultarProdutosBd = IdProduto =>{
     }
 }
 
+let verificarUserProduto = () =>  
+        (!!Dadoslogin && (ConsoltarBaseUsuarioResources(JSON.parse(Dadoslogin))[0].toString().includes("produtos"))) ? true : false
+
+if(!verificarUserProduto()) tableProdu.querySelector('.localizacao').remove()
+
 let ShowProdutos = produtos =>{
     createLoading(document.querySelector('body')).creat()
     tableProdu.querySelector('tbody').innerHTML = ''
@@ -28,6 +33,7 @@ let ShowProdutos = produtos =>{
                         <img src="${item.src !== '' ? item.src : "/Almoxarifado/assets/img/noImg.png"}">
                     </td>
                     <td>${item.descricao}</td>
+                    ${verificarUserProduto() === true ? `<td>${item.localizacao ? item.localizacao : 'Sem localização'}</td>` : ''}
                     <td>${produto.quantidade}</td>
                     <td>${item.valor.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</td>
                     `
@@ -125,7 +131,7 @@ for (const orcamento of orcamentos.orcamentos) {
                             ${orcamento.status === 'pendente'? `
                                 <span class="material-symbols-sharp download">download</span>
                                 <span class="material-symbols-sharp finaly">done</span>
-                                <span class="material-symbols-sharp edit" onclick="window.location.href='./editAdd/index.html?p=${orcamento.id}'">edit_square</span>
+                                <span class="material-symbols-sharp edit" onclick="window.location.href='/Almoxarifado/?o=${orcamento.id}'">edit_square</span>
                                 <span class="material-symbols-sharp cancel">cancel</span>
                             ` : '<span class="material-symbols-sharp download">download</span>'}
                         </td>
@@ -159,6 +165,23 @@ for (const orcamento of orcamentos.orcamentos) {
             accept:{
                 function: ()=>{ finalyOrcamento(orcamento.numero)},
                 text: 'Sim'
+            }
+        })
+    })
+
+    if(!!card.querySelector('.download'))
+    card.querySelector('.download').addEventListener('click',()=>{
+        showMessageBox().showMessage({
+            type: 'success',
+            title: 'Download pedido',
+            text: `Deseja fazer o download do pedido de número: <br/><strong>${leftPad(orcamento.numero, 6)}</strong>?`,
+            accept:{
+                function: ()=>{
+                    createLoading(document.querySelector('body')).creat()
+                    DownloadOrcamento(orcamento)
+                    createLoading(document.querySelector('body')).remove()
+                },
+                text: 'Download'
             }
         })
     })

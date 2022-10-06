@@ -1,4 +1,15 @@
-let Dadoslogin = sessionStorage.getItem('login')
+let BusarUsuario = () =>{
+    if(localStorage.getItem('login')){
+        return localStorage.getItem('login')
+    }else if(sessionStorage.getItem('login')){
+        return sessionStorage.getItem('login')
+    }
+}
+
+let Dadoslogin = BusarUsuario()
+
+let pathname = location.pathname.split('/')[2]
+pathname === 'index.html' || pathname === "" ? pathname = 'home' : ''
 
 let ConsoltarBaseUsuario = ()=>{
     let test = {user:false, senha: false}
@@ -101,3 +112,12 @@ let dateTimeToUTC = date =>{
     var data = new Date(date.replace('T',' ') + "  " + (offset > 0 ? "-" + offset : (offset * -1)));
     return data.toLocaleString('pt-BR', { timeZone: 'UTC' }).replace(/(\d*)\/(\d*)\/(\d*)\s(\d*):(\d*):(\d*).*/, '$1/$2/$3 às $4:$5:$6');
 }
+
+function  asyncImageLoader (url)  {
+    return new Promise( (resolve, reject) => {
+        var image = new Image()
+        image.src = url
+        image.onload = () => resolve(image)
+        image.onerror = () => reject(new Error('could not load image'))
+    })
+} 

@@ -20,11 +20,8 @@ let showMenuLateral = ()=> {
         closeBtn.addEventListener('click', () => {
             aside.removeAttribute('style')
         });
-
-        Dadoslogin = sessionStorage.getItem('login')
-        let pathname = (location.pathname).replaceAll('/','').replace('Almoxarifado','')
-        pathname === 'index.html' || pathname === "" ? pathname = 'home' : ''
-        if(!!JSON.parse(Dadoslogin)){
+        Dadoslogin = BusarUsuario()
+        if(!!(Dadoslogin)){
             let resources = ConsoltarBaseUsuarioResources(JSON.parse(Dadoslogin))
             aside.querySelector('h2').innerText = Capitalize(resources[1])
             for (const link of aside.querySelectorAll('a')) {
