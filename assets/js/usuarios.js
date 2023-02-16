@@ -3,28 +3,28 @@ let usuarios = {
         {
             id: 1, 
             user:{
-                nome: 'direcao escurial',
-                email: 'admescurial@gmail.com'
+                nome: 'direcao teste1',
+                email: 'teste1@email.com'
             },
-            senha: 'escurial2022',
+            senha: 'teste1',
             resources: ['dashboard','orcamentos','pedidos','produtos','configuracoes','usuarios']
         },
         {
             id: 2, 
             user:{
-                nome: 'direcao capri',
-                email: 'direcaocapri@gmail.com'
+                nome: 'direcao teste2',
+                email: 'teste2@email.com'
             },
-            senha: 'direcaocapri2022',
+            senha: 'teste2',
             resources: ['pedidos','orcamentos','configuracoes']
         },
         {
             id: 3, 
             user:{
-                nome: 'almoxarifado capri',
-                email: 'almoxarifadocapri@gmail.com'
+                nome: 'almoxarifado teste2',
+                email: 'almoxteste2@email.com'
             },
-            senha: 'almoxarifadocapri2022',
+            senha: 'almoxteste2',
             resources: ['orcamentos','pedidos','configuracoes']
         }
     ]
